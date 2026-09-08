@@ -1503,12 +1503,860 @@ function correctAnswer() {
 
 function goToStage4() {
 
-  alert("المرحلة الرابعة جاهزة تقريبًا... 👀");
+ 
+</script>
+<!-- =========================
+     STAGE 4 — FINAL
+========================= -->
+
+<div id="stage4" class="screen" style="display:none;">
+
+  <div class="loading-box">
+
+    <div class="tiny-label">FINAL STAGE</div>
+
+    <h1>Preparing final result...</h1>
+
+    <div class="progress">
+      <div id="progressBar"></div>
+    </div>
+
+    <div id="progressNumber">87%</div>
+
+  </div>
+
+</div>
+
+
+<!-- ERROR SCREEN -->
+
+<div id="errorScreen" class="screen" style="display:none;">
+
+  <div class="error-box">
+
+    <div class="error-icon">!</div>
+
+    <div class="error-code">ERROR 404</div>
+
+    <h1>Something is missing.</h1>
+
+    <p>
+      The final result cannot be completed.
+    </p>
+
+    <div class="error-buttons">
+
+      <button onclick="fakeRetry()">
+        TRY AGAIN
+      </button>
+
+      <button onclick="fakeIgnore()">
+        IGNORE ERROR
+      </button>
+
+      <button class="real-button" onclick="findMissing()">
+        FIND WHAT'S MISSING
+      </button>
+
+    </div>
+
+    <p id="errorHint"></p>
+
+  </div>
+
+</div>
+
+
+<!-- LETTER PUZZLE -->
+
+<div id="puzzleScreen" class="screen" style="display:none;">
+
+  <div class="puzzle-box">
+
+    <div class="tiny-label">FINAL STEP</div>
+
+    <h1>Something is missing.</h1>
+
+    <p>
+      رتّب الأحرف بالشكل الصحيح.
+    </p>
+
+    <div id="letters" class="letters"></div>
+
+    <p id="puzzleHint">
+      اضغط على الأحرف بالترتيب.
+    </p>
+
+    <button
+      id="resetLetters"
+      onclick="resetPuzzle()"
+      style="display:none;"
+    >
+      جرّب مرة ثانية
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- FINAL BIRTHDAY -->
+
+<div id="finalScreen" class="screen" style="display:none;">
+
+  <div class="final-content">
+
+    <div class="lights"></div>
+
+    <div class="birthday-title">
+      HAPPY BIRTHDAY
+    </div>
+
+    <div class="birthday-name">
+      داوود 🤍
+    </div>
+
+    <div class="confetti"></div>
+
+    <div class="final-message">
+
+      كل عام وانت بألف خييييير يارب، ألطف شخص تعرفت عليه
+      <br>
+      عقبال المية سنة وان شاء الله شوفك بالمكان يلي بتتمناه ع طول ويبعتلك ايام حلوة وكلها خير يارب🥹🤍🤍🤍
+      <br><br>
+      صح ما صرلنا زمان منعرف بعض بس ع طول بقول الشغلة مو بالوقت وانما بالشخص 🤍
+      <br>
+      ان شاء الله تعجبك المعايدة 🤣🤍🤍🤍
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+#stage4,
+#errorScreen,
+#puzzleScreen,
+#finalScreen {
+
+  min-height:100vh;
+  width:100%;
+
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #17243a 0%,
+      #090d16 48%,
+      #030509 100%
+    );
+
+  color:#edf3fb;
+
+  font-family:Arial, sans-serif;
+
+  box-sizing:border-box;
+
+  padding:25px;
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-box {
+
+  width:min(500px,90%);
+  text-align:center;
+}
+
+.tiny-label {
+
+  font-size:11px;
+  letter-spacing:4px;
+  color:#7188a7;
+  margin-bottom:25px;
+}
+
+.loading-box h1 {
+
+  font-size:25px;
+  font-weight:400;
+  margin-bottom:30px;
+
+}
+
+.progress {
+
+  width:100%;
+  height:4px;
+
+  background:rgba(255,255,255,.08);
+
+  border-radius:10px;
+  overflow:hidden;
+
+}
+
+#progressBar {
+
+  height:100%;
+  width:0%;
+
+  background:#dbe8f8;
+
+  transition:width 2.5s ease;
+
+}
+
+#progressNumber {
+
+  margin-top:15px;
+
+  color:#7d91ae;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-box {
+
+  width:min(520px,90%);
+
+  padding:45px 35px;
+
+  text-align:center;
+
+  background:rgba(8,12,20,.92);
+
+  border:
+
+    1px solid rgba(180,200,225,.15);
+
+  border-radius:20px;
+
+  box-shadow:
+
+    0 0 70px rgba(60,100,160,.08);
+
+}
+
+.error-icon {
+
+  width:55px;
+  height:55px;
+
+  margin:0 auto 20px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid #71829a;
+
+  border-radius:50%;
+
+  color:#d9e4f2;
+
+  font-size:25px;
+
+}
+
+.error-code {
+
+  color:#71829a;
+
+  font-size:11px;
+
+  letter-spacing:3px;
+
+  margin-bottom:15px;
+
+}
+
+.error-box h1 {
+
+  font-size:25px;
+
+  font-weight:400;
+
+  margin-bottom:12px;
+
+}
+
+.error-box p {
+
+  color:#8290a3;
+
+  font-size:14px;
+
+}
+
+.error-buttons {
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:30px;
+
+}
+
+.error-buttons button {
+
+  padding:14px;
+
+  border-radius:10px;
+
+  border:1px solid rgba(150,175,205,.18);
+
+  background:rgba(255,255,255,.025);
+
+  color:#aebbd0;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+}
+
+.error-buttons button:hover {
+
+  background:rgba(150,175,205,.08);
+
+  transform:translateY(-2px);
+
+}
+
+.error-buttons .real-button {
+
+  border-color:rgba(190,210,235,.35);
+
+  color:#e5edf8;
+
+}
+
+#errorHint {
+
+  min-height:20px;
+
+  margin-top:20px;
+
+  color:#68788e;
+
+}
+
+
+/* =========================
+   PUZZLE
+========================= */
+
+.puzzle-box {
+
+  width:min(650px,94%);
+
+  text-align:center;
+
+}
+
+.puzzle-box h1 {
+
+  font-size:28px;
+
+  font-weight:400;
+
+}
+
+.puzzle-box > p {
+
+  color:#8795aa;
+
+}
+
+.letters {
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+  gap:10px;
+
+  margin:40px auto 20px;
+
+  max-width:600px;
+
+}
+
+.letter {
+
+  width:48px;
+  height:58px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.025)
+    );
+
+  border:
+
+    1px solid rgba(170,195,225,.25);
+
+  border-radius:9px;
+
+  color:#e8f0fa;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+}
+
+.letter:hover {
+
+  transform:translateY(-5px);
+
+  border-color:rgba(210,225,245,.6);
+
+}
+
+.letter.used {
+
+  opacity:.25;
+
+  transform:scale(.9);
+
+  pointer-events:none;
+
+}
+
+#puzzleHint {
+
+  min-height:25px;
+
+  color:#7d8da4;
+
+}
+
+#resetLetters {
+
+  margin-top:10px;
+
+  padding:10px 25px;
+
+  border-radius:8px;
+
+  border:1px solid rgba(180,200,225,.2);
+
+  background:transparent;
+
+  color:#b7c4d6;
+
+  cursor:pointer;
+
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+#finalScreen {
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+
+    radial-gradient(
+      circle at center top,
+      #253957 0%,
+      #0b111d 42%,
+      #030509 100%
+    );
+
+}
+
+.final-content {
+
+  position:relative;
+
+  z-index:2;
+
+  width:min(750px,92%);
+
+  text-align:center;
+
+}
+
+.birthday-title {
+
+  font-size:clamp(35px,8vw,75px);
+
+  letter-spacing:8px;
+
+  font-weight:300;
+
+  color:#edf4fc;
+
+  text-shadow:
+
+    0 0 25px rgba(220,235,255,.25);
+
+  animation:
+
+    birthdayAppear 1.5s ease;
+
+}
+
+.birthday-name {
+
+  margin-top:15px;
+
+  font-size:28px;
+
+  color:#a9c4e6;
+
+  animation:
+
+    birthdayAppear 2s ease;
+
+}
+
+.final-message {
+
+  margin:45px auto 0;
+
+  max-width:650px;
+
+  padding:30px;
+
+  line-height:2;
+
+  font-size:16px;
+
+  color:#dce5f0;
+
+  background:
+
+    rgba(5,9,15,.55);
+
+  border:
+
+    1px solid rgba(170,200,230,.12);
+
+  border-radius:18px;
+
+  backdrop-filter:blur(8px);
+
+  animation:
+
+    birthdayAppear 2.5s ease;
+
+}
+
+.lights {
+
+  position:absolute;
+
+  top:-100px;
+
+  left:0;
+
+  width:100%;
+
+  height:20px;
+
+  background:
+
+    radial-gradient(
+      circle,
+      #e8f3ff 0 4px,
+      transparent 5px
+    );
+
+  background-size:45px 45px;
+
+  opacity:.8;
+
+}
+
+
+/* CONFETTI */
+
+.confetti {
+
+  position:absolute;
+
+  inset:-100px;
+
+  pointer-events:none;
+
+  background-image:
+
+    radial-gradient(circle,#dce9f7 2px,transparent 3px),
+    radial-gradient(circle,#8da9ca 2px,transparent 3px),
+    radial-gradient(circle,#ffffff 2px,transparent 3px);
+
+  background-size:
+
+    90px 100px,
+    130px 120px,
+    160px 140px;
+
+  animation:fall 8s linear infinite;
+
+  opacity:.5;
+
+}
+
+
+/* ANIMATIONS */
+
+@keyframes birthdayAppear {
+
+  from {
+
+    opacity:0;
+    transform:translateY(20px);
+
+  }
+
+  to {
+
+    opacity:1;
+    transform:translateY(0);
+
+  }
+
+}
+
+@keyframes fall {
+
+  from {
+    transform:translateY(-100px);
+  }
+
+  to {
+    transform:translateY(100vh);
+  }
+
+}
+
+</style>
+
+
+<script>
+
+/* =========================
+   STAGE 4 FLOW
+========================= */
+
+function goToStage4() {
+
+  document.getElementById("stage3").style.display = "none";
+
+  document.getElementById("stage4").style.display = "flex";
+
+  const bar = document.getElementById("progressBar");
+
+  const number = document.getElementById("progressNumber");
+
+  setTimeout(function() {
+
+    bar.style.width = "87%";
+
+  }, 100);
+
+  setTimeout(function() {
+
+    number.textContent = "100%";
+
+  }, 2500);
+
+  setTimeout(function() {
+
+    document.getElementById("stage4").style.display = "none";
+
+    document.getElementById("errorScreen").style.display = "flex";
+
+  }, 3500);
+
+}
+
+
+/* =========================
+   FAKE BUTTONS
+========================= */
+
+function fakeRetry() {
+
+  document.getElementById("errorHint").textContent =
+    "Still missing something... 👀";
+
+}
+
+function fakeIgnore() {
+
+  document.getElementById("errorHint").textContent =
+    "Nice try. You can't ignore this one. 😂";
+
+}
+
+
+/* =========================
+   FIND MISSING
+========================= */
+
+function findMissing() {
+
+  document.getElementById("errorScreen").style.display = "none";
+
+  document.getElementById("puzzleScreen").style.display = "flex";
+
+  createLetters();
+
+}
+
+
+/* =========================
+   LETTER PUZZLE
+========================= */
+
+const correctWord = [
+  "H",
+  "A",
+  "P",
+  "P",
+  "Y",
+  "B",
+  "I",
+  "R",
+  "T",
+  "H",
+  "D",
+  "A",
+  "Y"
+];
+
+let selectedLetters = [];
+
+function createLetters() {
+
+  const container = document.getElementById("letters");
+
+  container.innerHTML = "";
+
+  selectedLetters = [];
+
+  let shuffled = [...correctWord];
+
+  shuffled.sort(() => Math.random() - 0.5);
+
+  shuffled.forEach(function(letter, index) {
+
+    const button = document.createElement("button");
+
+    button.className = "letter";
+
+    button.textContent = letter;
+
+    button.dataset.index = index;
+
+    button.onclick = function() {
+
+      chooseLetter(button, letter);
+
+    };
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+function chooseLetter(button, letter) {
+
+  selectedLetters.push(letter);
+
+  button.classList.add("used");
+
+  const current = selectedLetters.join("");
+
+  document.getElementById("puzzleHint").textContent = current;
+
+  if (selectedLetters.length === correctWord.length) {
+
+    const answer = selectedLetters.join("");
+
+    if (answer === correctWord.join("")) {
+
+      setTimeout(function() {
+
+        document.getElementById("puzzleScreen").style.display = "none";
+
+        document.getElementById("finalScreen").style.display = "flex";
+
+      }, 700);
+
+    } else {
+
+      document.getElementById("puzzleHint").textContent =
+        "قريب... بس ترتيب الأحرف مو صحيح 👀";
+
+      document.getElementById("resetLetters").style.display =
+        "inline-block";
+
+    }
+
+  }
+
+}
+
+
+function resetPuzzle() {
+
+  document.getElementById("resetLetters").style.display = "none";
+
+  document.getElementById("puzzleHint").textContent =
+    "اضغط على الأحرف بالترتيب.";
+
+  createLetters();
 
 }
 
 </script>
-
 </body>
 
 </html>
