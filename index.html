@@ -10,6 +10,10 @@
 
 <style>
 
+/* =========================
+   الأساس
+========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -21,10 +25,6 @@ body {
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
-
-/* =========================
-   الشاشات
-========================= */
 
 .screen {
     width: 100vw;
@@ -45,12 +45,11 @@ body {
 
     border: 1px solid rgba(255,255,255,0.15);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,27,45,0.95),
-            rgba(7,11,20,0.95)
-        );
+    background: linear-gradient(
+        145deg,
+        rgba(18,27,45,0.96),
+        rgba(7,11,20,0.96)
+    );
 
     box-shadow:
         0 0 60px rgba(70,130,255,0.12);
@@ -60,6 +59,7 @@ body {
     margin: 0 0 25px;
 
     font-size: 44px;
+
     letter-spacing: 2px;
 }
 
@@ -113,12 +113,10 @@ button:hover {
     height: 100vh;
 
     background:
-
         linear-gradient(
             rgba(90,140,210,0.07) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(90,140,210,0.07) 1px,
@@ -131,11 +129,7 @@ button:hover {
     justify-content: center;
 }
 
-
-/* العنوان */
-
 .stage-title {
-
     position: absolute;
 
     top: 25px;
@@ -146,11 +140,7 @@ button:hover {
     letter-spacing: 1px;
 }
 
-
-/* العداد */
-
 .counter {
-
     position: absolute;
 
     top: 60px;
@@ -160,11 +150,6 @@ button:hover {
 
     font-size: 15px;
 }
-
-
-/* =========================
-   المخطط المعماري
-========================= */
 
 .blueprint {
 
@@ -196,13 +181,10 @@ button:hover {
 
     box-shadow:
         0 0 50px rgba(90,150,255,0.12);
-
 }
 
 
-/* =========================
-   الغرف
-========================= */
+/* الغرف */
 
 .room {
 
@@ -222,11 +204,7 @@ button:hover {
     letter-spacing: 1px;
 }
 
-
-/* غرفة المعيشة */
-
 .living {
-
     left: 3%;
     top: 5%;
 
@@ -234,11 +212,7 @@ button:hover {
     height: 55%;
 }
 
-
-/* المطبخ */
-
 .kitchen {
-
     right: 3%;
     top: 5%;
 
@@ -246,11 +220,7 @@ button:hover {
     height: 30%;
 }
 
-
-/* غرفة النوم */
-
 .bedroom {
-
     left: 3%;
     bottom: 5%;
 
@@ -258,11 +228,7 @@ button:hover {
     height: 28%;
 }
 
-
-/* الحمام */
-
 .bathroom {
-
     right: 3%;
     bottom: 5%;
 
@@ -271,9 +237,7 @@ button:hover {
 }
 
 
-/* =========================
-   الأبواب
-========================= */
+/* الأبواب */
 
 .door {
 
@@ -289,18 +253,10 @@ button:hover {
     transition: 0.3s;
 }
 
-
-/* باب طبيعي */
-
 .normal-door {
-
     left: 50%;
     top: 60%;
 }
-
-
-/* الخطأ الأول
-   باب يفتح على الحائط */
 
 .wrong-door {
 
@@ -309,10 +265,6 @@ button:hover {
 
     transform: rotate(90deg);
 }
-
-
-/* الخطأ الخامس
-   باب الحمام باتجاه غريب */
 
 .bathroom-door {
 
@@ -323,9 +275,7 @@ button:hover {
 }
 
 
-/* =========================
-   الشبابيك
-========================= */
+/* الشبابيك */
 
 .window {
 
@@ -342,10 +292,6 @@ button:hover {
     transition: 0.3s;
 }
 
-
-/* الخطأ الثاني
-   شباك بمكان غير منطقي */
-
 .wrong-window {
 
     left: 46%;
@@ -353,9 +299,7 @@ button:hover {
 }
 
 
-/* =========================
-   الدرج
-========================= */
+/* الدرج */
 
 .stairs {
 
@@ -372,7 +316,6 @@ button:hover {
     transition: 0.3s;
 }
 
-
 .stairs div {
 
     width: 70px;
@@ -380,10 +323,6 @@ button:hover {
 
     border-top: 2px solid #d7e4f5;
 }
-
-
-/* الخطأ الثالث
-   درج لا يصل لمكان */
 
 .wrong-stairs {
 
@@ -394,9 +333,7 @@ button:hover {
 }
 
 
-/* =========================
-   العمود
-========================= */
+/* العمود */
 
 .column {
 
@@ -412,10 +349,6 @@ button:hover {
     transition: 0.3s;
 }
 
-
-/* الخطأ الرابع
-   عمود في مكان غريب */
-
 .wrong-column {
 
     left: 45%;
@@ -423,9 +356,7 @@ button:hover {
 }
 
 
-/* =========================
-   عند اكتشاف الخطأ
-========================= */
+/* الأخطاء بعد اكتشافها */
 
 .wrong-door.found,
 .wrong-window.found,
@@ -440,9 +371,6 @@ button:hover {
     box-shadow:
         0 0 20px rgba(127,255,160,0.5);
 }
-
-
-/* الرسالة */
 
 .message {
 
@@ -465,10 +393,442 @@ button:hover {
 
 
 /* =========================
-   شاشة النجاح
+   نجاح المرحلة الأولى
 ========================= */
 
 #successScreen {
+    display: none;
+}
+
+
+/* =========================
+   المرحلة الثانية
+========================= */
+
+#stage2 {
+
+    display: none;
+
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #172236 0%,
+            #090e18 65%
+        );
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* عنوان المرحلة الثانية */
+
+.stage2-title {
+
+    position: absolute;
+
+    top: 28px;
+    right: 30px;
+
+    font-size: 22px;
+}
+
+
+/* الوصف */
+
+.stage2-subtitle {
+
+    position: absolute;
+
+    top: 65px;
+    right: 30px;
+
+    color: #9daabe;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   المكتب
+========================= */
+
+.office {
+
+    position: relative;
+
+    width: 85%;
+    max-width: 950px;
+
+    height: 65%;
+
+    border: 1px solid rgba(220,230,245,0.2);
+
+    background:
+
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 30px 30px;
+
+    box-shadow:
+        0 0 60px rgba(0,0,0,0.5);
+
+    overflow: hidden;
+}
+
+
+/* الأرض */
+
+.floor {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 24%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.03) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* النافذة */
+
+.big-window {
+
+    position: absolute;
+
+    top: 8%;
+    right: 8%;
+
+    width: 28%;
+    height: 40%;
+
+    border: 2px solid rgba(170,200,235,0.5);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(80,130,190,0.18),
+            rgba(10,20,35,0.8)
+        );
+}
+
+
+/* تقسيم النافذة */
+
+.big-window::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 2px;
+    height: 100%;
+
+    background: rgba(170,200,235,0.4);
+}
+
+.big-window::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: rgba(170,200,235,0.4);
+}
+
+
+/* =========================
+   الطاولة
+========================= */
+
+.desk {
+
+    position: absolute;
+
+    left: 20%;
+    bottom: 25%;
+
+    width: 50%;
+    height: 14%;
+
+    background: #182334;
+
+    border: 1px solid rgba(220,230,245,0.25);
+
+    box-shadow:
+        0 12px 20px rgba(0,0,0,0.4);
+}
+
+
+/* أرجل الطاولة */
+
+.desk::before,
+.desk::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -80px;
+
+    width: 8px;
+    height: 80px;
+
+    background: #121b2a;
+}
+
+.desk::before {
+    left: 8%;
+}
+
+.desk::after {
+    right: 8%;
+}
+
+
+/* =========================
+   شاشة الكمبيوتر
+========================= */
+
+.monitor {
+
+    position: absolute;
+
+    left: 38%;
+    bottom: 39%;
+
+    width: 22%;
+    height: 20%;
+
+    background: #080d15;
+
+    border: 3px solid #65758e;
+
+    box-shadow:
+        0 0 25px rgba(90,150,255,0.1);
+}
+
+.monitor-screen {
+
+    position: absolute;
+
+    left: 8%;
+    top: 8%;
+
+    width: 84%;
+    height: 78%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(90,150,255,0.12),
+            rgba(30,50,80,0.3)
+        );
+
+    border: 1px solid rgba(130,170,220,0.25);
+}
+
+.monitor-stand {
+
+    position: absolute;
+
+    left: 43%;
+    bottom: -35px;
+
+    width: 14%;
+    height: 35px;
+
+    background: #65758e;
+}
+
+
+/* =========================
+   الكرسي
+========================= */
+
+.chair {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 12%;
+
+    width: 12%;
+    height: 25%;
+
+    border: 2px solid #6e7d92;
+
+    border-radius: 8px;
+}
+
+
+/* =========================
+   نبتة
+========================= */
+
+.plant {
+
+    position: absolute;
+
+    left: 8%;
+    bottom: 23%;
+
+    width: 10%;
+    height: 18%;
+}
+
+
+/* الأصيص */
+
+.pot {
+
+    position: absolute;
+
+    bottom: 0;
+    left: 28%;
+
+    width: 45%;
+    height: 35%;
+
+    background: #59687b;
+
+    clip-path: polygon(
+        10% 0,
+        90% 0,
+        75% 100%,
+        25% 100%
+    );
+}
+
+
+/* أوراق */
+
+.leaf {
+
+    position: absolute;
+
+    width: 45%;
+    height: 35%;
+
+    border-radius: 100% 0;
+
+    background: #728b7c;
+
+}
+
+.leaf1 {
+    left: 10%;
+    top: 10%;
+    transform: rotate(-30deg);
+}
+
+.leaf2 {
+    right: 5%;
+    top: 5%;
+    transform: rotate(40deg);
+}
+
+.leaf3 {
+    left: 30%;
+    top: -5%;
+    transform: rotate(5deg);
+}
+
+
+/* =========================
+   الغرض الغريب
+========================= */
+
+/*
+   الغرض الغريب هو:
+   كُرة صغيرة مضيئة على الأرض.
+   ما رح نكتب إنه غريب.
+*/
+
+.strange-object {
+
+    position: absolute;
+
+    right: 42%;
+    bottom: 12%;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #dce8ff,
+            #5d79a5 45%,
+            #1c2b42 75%
+        );
+
+    box-shadow:
+        0 0 18px rgba(120,170,255,0.12);
+
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+
+/* عند اكتشافه */
+
+.strange-object.found {
+
+    transform: scale(1.25);
+
+    box-shadow:
+        0 0 35px rgba(127,255,180,0.55);
+}
+
+
+/* =========================
+   نجاح المرحلة الثانية
+========================= */
+
+#success2 {
 
     display: none;
 }
@@ -493,13 +853,20 @@ button:hover {
         height: 60%;
     }
 
-    .stage-title {
+    .stage-title,
+    .stage2-title {
         font-size: 17px;
         right: 15px;
     }
 
-    .counter {
+    .counter,
+    .stage2-subtitle {
         right: 15px;
+    }
+
+    .office {
+        width: 94%;
+        height: 58%;
     }
 
 }
@@ -513,7 +880,7 @@ button:hover {
 
 
 <!-- ==================================
-     شاشة البداية
+     البداية
 ================================== -->
 
 <div id="introScreen" class="screen">
@@ -560,7 +927,6 @@ button:hover {
 
 <div id="stage1">
 
-
     <div class="stage-title">
 
         المرحلة الأولى — العين المعمارية
@@ -572,15 +938,10 @@ button:hover {
 
         الأخطاء المكتشفة:
 
-        <span id="count">0</span>
-
-        / 5
+        <span id="count">0</span> / 5
 
     </div>
 
-
-
-    <!-- المخطط -->
 
     <div class="blueprint">
 
@@ -588,32 +949,20 @@ button:hover {
         <!-- الغرف -->
 
         <div class="room living">
-
             Living Room
-
         </div>
-
 
         <div class="room kitchen">
-
             Kitchen
-
         </div>
-
 
         <div class="room bedroom">
-
             Bedroom
-
         </div>
-
 
         <div class="room bathroom">
-
             Bathroom
-
         </div>
-
 
 
         <!-- باب طبيعي -->
@@ -621,9 +970,7 @@ button:hover {
         <div class="door normal-door"></div>
 
 
-
-        <!-- الخطأ الأول
-             باب يفتح على الحائط -->
+        <!-- الخطأ 1 -->
 
         <div
             class="door wrong-door"
@@ -631,9 +978,7 @@ button:hover {
         ></div>
 
 
-
-        <!-- الخطأ الثاني
-             شباك غريب -->
+        <!-- الخطأ 2 -->
 
         <div
             class="window wrong-window"
@@ -641,9 +986,7 @@ button:hover {
         ></div>
 
 
-
-        <!-- الخطأ الثالث
-             درج لا يصل لمكان -->
+        <!-- الخطأ 3 -->
 
         <div
             class="stairs wrong-stairs"
@@ -660,9 +1003,7 @@ button:hover {
         </div>
 
 
-
-        <!-- الخطأ الرابع
-             عمود غريب -->
+        <!-- الخطأ 4 -->
 
         <div
             class="column wrong-column"
@@ -670,9 +1011,7 @@ button:hover {
         ></div>
 
 
-
-        <!-- الخطأ الخامس
-             باب الحمام -->
+        <!-- الخطأ 5 -->
 
         <div
             class="door bathroom-door"
@@ -681,7 +1020,6 @@ button:hover {
 
 
     </div>
-
 
 
     <div class="message">
@@ -696,13 +1034,12 @@ button:hover {
 
     </div>
 
-
 </div>
 
 
 
 <!-- ==================================
-     شاشة النجاح
+     نجاح المرحلة الأولى
 ================================== -->
 
 <div id="successScreen" class="screen">
@@ -710,11 +1047,8 @@ button:hover {
     <div class="card">
 
         <h1>
-
             أحسنت. 👀
-
         </h1>
-
 
         <p>
 
@@ -727,7 +1061,7 @@ button:hover {
         </p>
 
 
-        <button onclick="alert('المرحلة الثانية قادمة... 👀')">
+        <button onclick="goToStage2()">
 
             تابع
 
@@ -740,15 +1074,138 @@ button:hover {
 
 
 <!-- ==================================
-     JavaScript
+     المرحلة الثانية
 ================================== -->
 
+<div id="stage2">
+
+
+    <div class="stage2-title">
+
+        المرحلة الثانية — شيء ليس في مكانه
+
+    </div>
+
+
+    <div class="stage2-subtitle">
+
+        أحيانًا الشيء الغريب لا يحاول أن يلفت انتباهك.
+
+    </div>
+
+
+    <div class="office">
+
+
+        <!-- النافذة -->
+
+        <div class="big-window"></div>
+
+
+        <!-- الأرض -->
+
+        <div class="floor"></div>
+
+
+        <!-- الطاولة -->
+
+        <div class="desk"></div>
+
+
+        <!-- الشاشة -->
+
+        <div class="monitor">
+
+            <div class="monitor-screen"></div>
+
+            <div class="monitor-stand"></div>
+
+        </div>
+
+
+        <!-- الكرسي -->
+
+        <div class="chair"></div>
+
+
+        <!-- النبتة -->
+
+        <div class="plant">
+
+            <div class="leaf leaf1"></div>
+
+            <div class="leaf leaf2"></div>
+
+            <div class="leaf leaf3"></div>
+
+            <div class="pot"></div>
+
+        </div>
+
+
+        <!-- الشيء الغريب -->
+
+        <div
+            class="strange-object"
+            onclick="findStrangeObject(this)"
+        ></div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==================================
+     نجاح المرحلة الثانية
+================================== -->
+
+<div id="success2" class="screen">
+
+    <div class="card">
+
+        <h1>
+            وجدته. 👀
+        </h1>
+
+
+        <p>
+
+            أحيانًا التفاصيل الصغيرة
+
+            <br>
+
+            هي التي تغيّر الصورة كلها.
+
+        </p>
+
+
+        <button onclick="goToStage3()">
+
+            تابع
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
 <script>
+
+/* =========================
+   المتغيرات
+========================= */
 
 let found = 0;
 
 
-/* بدء المشروع */
+/* =========================
+   بدء المشروع
+========================= */
 
 function startProject() {
 
@@ -759,11 +1216,11 @@ function startProject() {
 }
 
 
-/* اكتشاف خطأ */
+/* =========================
+   اكتشاف أخطاء المرحلة الأولى
+========================= */
 
 function findError(element) {
-
-    /* إذا انكشف من قبل لا نعيد عده */
 
     if (element.classList.contains("found")) {
 
@@ -772,20 +1229,14 @@ function findError(element) {
     }
 
 
-    /* تغيير شكله */
-
     element.classList.add("found");
 
-
-    /* زيادة العدد */
 
     found++;
 
 
     document.getElementById("count").textContent = found;
 
-
-    /* إذا وجد الأخطاء الخمسة */
 
     if (found === 5) {
 
@@ -798,6 +1249,50 @@ function findError(element) {
         }, 800);
 
     }
+
+}
+
+
+/* =========================
+   الانتقال للمرحلة الثانية
+========================= */
+
+function goToStage2() {
+
+    document.getElementById("successScreen").style.display = "none";
+
+    document.getElementById("stage2").style.display = "flex";
+
+}
+
+
+/* =========================
+   اكتشاف الشيء الغريب
+========================= */
+
+function findStrangeObject(element) {
+
+    element.classList.add("found");
+
+
+    setTimeout(function() {
+
+        document.getElementById("stage2").style.display = "none";
+
+        document.getElementById("success2").style.display = "flex";
+
+    }, 800);
+
+}
+
+
+/* =========================
+   المرحلة الثالثة
+========================= */
+
+function goToStage3() {
+
+    alert("المرحلة الثالثة قادمة... 👀");
 
 }
 
