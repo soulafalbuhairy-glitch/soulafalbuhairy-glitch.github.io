@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>المشروع 25</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -19,9 +22,14 @@ body {
     overflow: hidden;
 }
 
+/* =========================
+   الشاشات
+========================= */
+
 .screen {
     width: 100vw;
     height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,187 +38,514 @@ body {
 .card {
     width: 90%;
     max-width: 700px;
-    padding: 50px 30px;
+
+    padding: 55px 35px;
+
     text-align: center;
+
     border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(10,15,28,0.9);
-    box-shadow: 0 0 50px rgba(60,130,255,0.12);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,27,45,0.95),
+            rgba(7,11,20,0.95)
+        );
+
+    box-shadow:
+        0 0 60px rgba(70,130,255,0.12);
 }
 
-h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
+.card h1 {
+    margin: 0 0 25px;
+
+    font-size: 44px;
+    letter-spacing: 2px;
 }
 
-p {
-    color: #b9c2d0;
-    line-height: 1.9;
+.card p {
+    color: #b9c4d6;
+
+    line-height: 2;
+
     font-size: 18px;
 }
 
 button {
     margin-top: 25px;
-    padding: 14px 35px;
+
+    padding: 14px 38px;
+
     border: 1px solid #7fa8ff;
+
     background: transparent;
+
     color: white;
+
     font-size: 16px;
+
     cursor: pointer;
+
     transition: 0.3s;
 }
 
 button:hover {
     background: #7fa8ff;
+
     color: #050810;
+
+    box-shadow:
+        0 0 25px rgba(127,168,255,0.4);
 }
 
-/* المرحلة الأولى */
+
+/* =========================
+   المرحلة الأولى
+========================= */
 
 #stage1 {
+
     display: none;
+
     position: relative;
+
     width: 100vw;
     height: 100vh;
+
     background:
-        linear-gradient(rgba(80,130,200,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(80,130,200,0.08) 1px, transparent 1px);
-    background-size: 40px 40px;
+
+        linear-gradient(
+            rgba(90,140,210,0.07) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(90,140,210,0.07) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
+
+    align-items: center;
+    justify-content: center;
 }
 
-.plan {
+
+/* العنوان */
+
+.stage-title {
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    font-size: 22px;
+
+    letter-spacing: 1px;
+}
+
+
+/* العداد */
+
+.counter {
+
+    position: absolute;
+
+    top: 60px;
+    right: 30px;
+
+    color: #aebbd0;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   المخطط المعماري
+========================= */
+
+.blueprint {
+
     position: relative;
-    width: 80%;
-    height: 70%;
+
+    width: 82%;
     max-width: 900px;
-    border: 2px solid rgba(180,210,255,0.5);
-    background: rgba(15,25,40,0.7);
+
+    height: 68%;
+
+    border: 3px solid #d7e4f5;
+
+    background:
+
+        linear-gradient(
+            rgba(100,150,220,0.06) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(100,150,220,0.06) 1px,
+            transparent 1px
+        ),
+
+        #0b1422;
+
+    background-size: 25px 25px;
+
+    box-shadow:
+        0 0 50px rgba(90,150,255,0.12);
+
 }
 
-.wall {
+
+/* =========================
+   الغرف
+========================= */
+
+.room {
+
     position: absolute;
-    background: rgba(210,225,255,0.65);
+
+    border: 2px solid rgba(215,228,245,0.75);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(215,228,245,0.45);
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
 }
 
-.wall.top {
-    width: 100%;
-    height: 5px;
-    top: 0;
+
+/* غرفة المعيشة */
+
+.living {
+
+    left: 3%;
+    top: 5%;
+
+    width: 52%;
+    height: 55%;
 }
 
-.wall.bottom {
-    width: 100%;
-    height: 5px;
-    bottom: 0;
+
+/* المطبخ */
+
+.kitchen {
+
+    right: 3%;
+    top: 5%;
+
+    width: 35%;
+    height: 30%;
 }
 
-.wall.left {
-    width: 5px;
-    height: 100%;
-    left: 0;
+
+/* غرفة النوم */
+
+.bedroom {
+
+    left: 3%;
+    bottom: 5%;
+
+    width: 42%;
+    height: 28%;
 }
 
-.wall.right {
-    width: 5px;
-    height: 100%;
-    right: 0;
+
+/* الحمام */
+
+.bathroom {
+
+    right: 3%;
+    bottom: 5%;
+
+    width: 27%;
+    height: 28%;
 }
 
-.error {
+
+/* =========================
+   الأبواب
+========================= */
+
+.door {
+
     position: absolute;
-    width: 35px;
-    height: 35px;
-    border: 2px solid #ff6b6b;
-    border-radius: 50%;
+
+    width: 48px;
+    height: 7px;
+
+    background: #d7e4f5;
+
     cursor: pointer;
+
     transition: 0.3s;
 }
 
-.error:hover {
-    transform: scale(1.2);
-    background: rgba(255,107,107,0.15);
+
+/* باب طبيعي */
+
+.normal-door {
+
+    left: 50%;
+    top: 60%;
 }
 
-.error.found {
+
+/* الخطأ الأول
+   باب يفتح على الحائط */
+
+.wrong-door {
+
+    left: 53%;
+    top: 5%;
+
+    transform: rotate(90deg);
+}
+
+
+/* الخطأ الخامس
+   باب الحمام باتجاه غريب */
+
+.bathroom-door {
+
+    right: 28%;
+    bottom: 33%;
+
+    transform: rotate(180deg);
+}
+
+
+/* =========================
+   الشبابيك
+========================= */
+
+.window {
+
+    position: absolute;
+
+    width: 70px;
+    height: 10px;
+
+    border-top: 3px solid #82b7ff;
+    border-bottom: 3px solid #82b7ff;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+/* الخطأ الثاني
+   شباك بمكان غير منطقي */
+
+.wrong-window {
+
+    left: 46%;
+    top: 28%;
+}
+
+
+/* =========================
+   الدرج
+========================= */
+
+.stairs {
+
+    position: absolute;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.stairs div {
+
+    width: 70px;
+    height: 7px;
+
+    border-top: 2px solid #d7e4f5;
+}
+
+
+/* الخطأ الثالث
+   درج لا يصل لمكان */
+
+.wrong-stairs {
+
+    left: 58%;
+    bottom: 18%;
+
+    transform: rotate(-20deg);
+}
+
+
+/* =========================
+   العمود
+========================= */
+
+.column {
+
+    position: absolute;
+
+    width: 27px;
+    height: 27px;
+
+    border: 3px solid #d7e4f5;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+/* الخطأ الرابع
+   عمود في مكان غريب */
+
+.wrong-column {
+
+    left: 45%;
+    top: 48%;
+}
+
+
+/* =========================
+   عند اكتشاف الخطأ
+========================= */
+
+.wrong-door.found,
+.wrong-window.found,
+.wrong-stairs.found,
+.wrong-column.found,
+.bathroom-door.found {
+
+    background: rgba(127,255,160,0.25);
+
     border-color: #7fffa0;
-    background: rgba(127,255,160,0.15);
-    box-shadow: 0 0 20px rgba(127,255,160,0.4);
+
+    box-shadow:
+        0 0 20px rgba(127,255,160,0.5);
 }
 
-#e1 {
-    top: 20%;
-    left: 20%;
-}
 
-#e2 {
-    top: 35%;
-    left: 65%;
-}
-
-#e3 {
-    top: 65%;
-    left: 30%;
-}
-
-#e4 {
-    top: 50%;
-    left: 80%;
-}
-
-#e5 {
-    top: 75%;
-    left: 65%;
-}
-
-.stage-title {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    font-size: 22px;
-}
-
-.counter {
-    position: absolute;
-    top: 60px;
-    right: 30px;
-    color: #aebbd0;
-}
+/* الرسالة */
 
 .message {
+
     position: absolute;
-    bottom: 25px;
+
+    bottom: 22px;
+
     left: 50%;
+
     transform: translateX(-50%);
+
     color: #aebbd0;
+
     text-align: center;
+
+    line-height: 1.8;
+
+    font-size: 15px;
 }
 
-/* شاشة النجاح */
+
+/* =========================
+   شاشة النجاح
+========================= */
 
 #successScreen {
+
     display: none;
 }
+
+
+/* =========================
+   موبايل
+========================= */
+
+@media (max-width: 600px) {
+
+    .card h1 {
+        font-size: 34px;
+    }
+
+    .card p {
+        font-size: 16px;
+    }
+
+    .blueprint {
+        width: 94%;
+        height: 60%;
+    }
+
+    .stage-title {
+        font-size: 17px;
+        right: 15px;
+    }
+
+    .counter {
+        right: 15px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- البداية -->
+
+<!-- ==================================
+     شاشة البداية
+================================== -->
 
 <div id="introScreen" class="screen">
 
     <div class="card">
 
-        <h1>المشروع 25</h1>
+        <h1>
+            المشروع 25
+        </h1>
 
         <p>
-            مهمتك: الوصول إلى نهاية المشروع.<br>
-            أربع مراحل.<br>
-            أربع اختبارات.<br>
+
+            مهمتك: الوصول إلى نهاية المشروع.
+
+            <br>
+
+            أربع مراحل.
+
+            <br>
+
+            أربع اختبارات.
+
+            <br>
+
             ولا يوجد زر لتخطي أي مرحلة. 😌
+
         </p>
 
         <button onclick="startProject()">
+
             ابدأ المشروع
+
         </button>
 
     </div>
@@ -218,57 +553,184 @@ button:hover {
 </div>
 
 
-<!-- المرحلة الأولى -->
+
+<!-- ==================================
+     المرحلة الأولى
+================================== -->
 
 <div id="stage1">
 
+
     <div class="stage-title">
+
         المرحلة الأولى — العين المعمارية
+
     </div>
+
 
     <div class="counter">
+
         الأخطاء المكتشفة:
-        <span id="count">0</span> / 5
-    </div>
 
-    <div class="plan">
+        <span id="count">0</span>
 
-        <div class="wall top"></div>
-        <div class="wall bottom"></div>
-        <div class="wall left"></div>
-        <div class="wall right"></div>
-
-        <div class="error" id="e1" onclick="findError(this)"></div>
-        <div class="error" id="e2" onclick="findError(this)"></div>
-        <div class="error" id="e3" onclick="findError(this)"></div>
-        <div class="error" id="e4" onclick="findError(this)"></div>
-        <div class="error" id="e5" onclick="findError(this)"></div>
+        / 5
 
     </div>
+
+
+
+    <!-- المخطط -->
+
+    <div class="blueprint">
+
+
+        <!-- الغرف -->
+
+        <div class="room living">
+
+            Living Room
+
+        </div>
+
+
+        <div class="room kitchen">
+
+            Kitchen
+
+        </div>
+
+
+        <div class="room bedroom">
+
+            Bedroom
+
+        </div>
+
+
+        <div class="room bathroom">
+
+            Bathroom
+
+        </div>
+
+
+
+        <!-- باب طبيعي -->
+
+        <div class="door normal-door"></div>
+
+
+
+        <!-- الخطأ الأول
+             باب يفتح على الحائط -->
+
+        <div
+            class="door wrong-door"
+            onclick="findError(this)"
+        ></div>
+
+
+
+        <!-- الخطأ الثاني
+             شباك غريب -->
+
+        <div
+            class="window wrong-window"
+            onclick="findError(this)"
+        ></div>
+
+
+
+        <!-- الخطأ الثالث
+             درج لا يصل لمكان -->
+
+        <div
+            class="stairs wrong-stairs"
+            onclick="findError(this)"
+        >
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+
+
+
+        <!-- الخطأ الرابع
+             عمود غريب -->
+
+        <div
+            class="column wrong-column"
+            onclick="findError(this)"
+        ></div>
+
+
+
+        <!-- الخطأ الخامس
+             باب الحمام -->
+
+        <div
+            class="door bathroom-door"
+            onclick="findError(this)"
+        ></div>
+
+
+    </div>
+
+
 
     <div class="message">
-        هناك 5 أخطاء مخبأة في المخطط.<br>
-        عيونك المعمارية هي الحل. 👀
+
+        في هذا المخطط 5 أخطاء.
+
+        <br>
+
+        لا توجد علامات تدلّك عليها...
+
+        اكتشفها بنفسك. 👀
+
     </div>
+
 
 </div>
 
 
-<!-- النجاح -->
+
+<!-- ==================================
+     شاشة النجاح
+================================== -->
 
 <div id="successScreen" class="screen">
 
     <div class="card">
 
-        <h1>أحسنت. 👀</h1>
+        <h1>
+
+            أحسنت. 👀
+
+        </h1>
+
 
         <p>
-            تم اكتشاف جميع الأخطاء.<br>
+
+            تم اكتشاف جميع الأخطاء.
+
+            <br>
+
             يبدو أنك تستحق الانتقال للمرحلة التالية.
+
         </p>
 
+
         <button onclick="alert('المرحلة الثانية قادمة... 👀')">
+
             تابع
+
         </button>
 
     </div>
@@ -276,37 +738,64 @@ button:hover {
 </div>
 
 
+
+<!-- ==================================
+     JavaScript
+================================== -->
+
 <script>
 
 let found = 0;
 
+
+/* بدء المشروع */
+
 function startProject() {
 
     document.getElementById("introScreen").style.display = "none";
+
     document.getElementById("stage1").style.display = "flex";
 
 }
 
+
+/* اكتشاف خطأ */
+
 function findError(element) {
 
+    /* إذا انكشف من قبل لا نعيد عده */
+
     if (element.classList.contains("found")) {
+
         return;
+
     }
+
+
+    /* تغيير شكله */
 
     element.classList.add("found");
 
+
+    /* زيادة العدد */
+
     found++;
 
+
     document.getElementById("count").textContent = found;
+
+
+    /* إذا وجد الأخطاء الخمسة */
 
     if (found === 5) {
 
         setTimeout(function() {
 
             document.getElementById("stage1").style.display = "none";
+
             document.getElementById("successScreen").style.display = "flex";
 
-        }, 700);
+        }, 800);
 
     }
 
@@ -314,5 +803,7 @@ function findError(element) {
 
 </script>
 
+
 </body>
+
 </html>
