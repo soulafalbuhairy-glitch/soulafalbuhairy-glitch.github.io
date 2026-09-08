@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,1461 +9,1575 @@
 
 <style>
 
-/* =========================
-   الأساس
-========================= */
-
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    margin: 0;
-    background: #070b14;
-    color: white;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
+body{
+    min-height:100vh;
+    background:#050810;
+    color:#fff;
+    font-family:Arial, Tahoma, sans-serif;
+    overflow-x:hidden;
 }
 
-.screen {
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.screen{
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
 }
 
-.card {
-    width: 90%;
-    max-width: 700px;
-
-    padding: 55px 35px;
-
-    text-align: center;
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    background: linear-gradient(
-        145deg,
-        rgba(18,27,45,0.96),
-        rgba(7,11,20,0.96)
-    );
-
-    box-shadow:
-        0 0 60px rgba(70,130,255,0.12);
+.screen.active{
+    display:flex;
 }
-
-.card h1 {
-    margin: 0 0 25px;
-
-    font-size: 44px;
-
-    letter-spacing: 2px;
-}
-
-.card p {
-    color: #b9c4d6;
-
-    line-height: 2;
-
-    font-size: 18px;
-}
-
-button {
-    margin-top: 25px;
-
-    padding: 14px 38px;
-
-    border: 1px solid #7fa8ff;
-
-    background: transparent;
-
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #7fa8ff;
-
-    color: #050810;
-
-    box-shadow:
-        0 0 25px rgba(127,168,255,0.4);
-}
-
 
 /* =========================
-   المرحلة الأولى
+   INTRO
 ========================= */
 
-#stage1 {
-
-    display: none;
-
-    position: relative;
-
-    width: 100vw;
-    height: 100vh;
-
+#intro{
     background:
-        linear-gradient(
-            rgba(90,140,210,0.07) 1px,
-            transparent 1px
+        linear-gradient(rgba(5,8,16,.86),rgba(5,8,16,.96)),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 39px,
+            rgba(80,150,255,.07) 40px
         ),
-        linear-gradient(
+        repeating-linear-gradient(
             90deg,
-            rgba(90,140,210,0.07) 1px,
-            transparent 1px
+            transparent 0,
+            transparent 39px,
+            rgba(80,150,255,.07) 40px
         );
-
-    background-size: 35px 35px;
-
-    align-items: center;
-    justify-content: center;
+    text-align:center;
 }
 
-.stage-title {
-    position: absolute;
-
-    top: 25px;
-    right: 30px;
-
-    font-size: 22px;
-
-    letter-spacing: 1px;
+.intro-box{
+    max-width:700px;
 }
 
-.counter {
-    position: absolute;
-
-    top: 60px;
-    right: 30px;
-
-    color: #aebbd0;
-
-    font-size: 15px;
+.small-label{
+    font-size:13px;
+    letter-spacing:4px;
+    color:#8aa8d8;
+    margin-bottom:25px;
 }
 
-.blueprint {
-
-    position: relative;
-
-    width: 82%;
-    max-width: 900px;
-
-    height: 68%;
-
-    border: 3px solid #d7e4f5;
-
-    background:
-
-        linear-gradient(
-            rgba(100,150,220,0.06) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(100,150,220,0.06) 1px,
-            transparent 1px
-        ),
-
-        #0b1422;
-
-    background-size: 25px 25px;
-
-    box-shadow:
-        0 0 50px rgba(90,150,255,0.12);
+.intro-title{
+    font-size:clamp(45px,10vw,90px);
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:10px;
 }
 
-
-/* الغرف */
-
-.room {
-
-    position: absolute;
-
-    border: 2px solid rgba(215,228,245,0.75);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: rgba(215,228,245,0.45);
-
-    font-size: 13px;
-
-    letter-spacing: 1px;
+.intro-subtitle{
+    color:#9ca9bd;
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:40px;
 }
 
-.living {
-    left: 3%;
-    top: 5%;
-
-    width: 52%;
-    height: 55%;
+.start-btn,
+.next-btn,
+.retry-btn{
+    border:1px solid rgba(120,170,255,.5);
+    background:rgba(20,30,50,.8);
+    color:#fff;
+    padding:14px 34px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
 }
 
-.kitchen {
-    right: 3%;
-    top: 5%;
-
-    width: 35%;
-    height: 30%;
+.start-btn:hover,
+.next-btn:hover,
+.retry-btn:hover{
+    background:#16243c;
+    transform:translateY(-2px);
+    box-shadow:0 0 25px rgba(80,150,255,.15);
 }
-
-.bedroom {
-    left: 3%;
-    bottom: 5%;
-
-    width: 42%;
-    height: 28%;
-}
-
-.bathroom {
-    right: 3%;
-    bottom: 5%;
-
-    width: 27%;
-    height: 28%;
-}
-
-
-/* الأبواب */
-
-.door {
-
-    position: absolute;
-
-    width: 48px;
-    height: 7px;
-
-    background: #d7e4f5;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.normal-door {
-    left: 50%;
-    top: 60%;
-}
-
-.wrong-door {
-
-    left: 53%;
-    top: 5%;
-
-    transform: rotate(90deg);
-}
-
-.bathroom-door {
-
-    right: 28%;
-    bottom: 33%;
-
-    transform: rotate(180deg);
-}
-
-
-/* الشبابيك */
-
-.window {
-
-    position: absolute;
-
-    width: 70px;
-    height: 10px;
-
-    border-top: 3px solid #82b7ff;
-    border-bottom: 3px solid #82b7ff;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.wrong-window {
-
-    left: 46%;
-    top: 28%;
-}
-
-
-/* الدرج */
-
-.stairs {
-
-    position: absolute;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.stairs div {
-
-    width: 70px;
-    height: 7px;
-
-    border-top: 2px solid #d7e4f5;
-}
-
-.wrong-stairs {
-
-    left: 58%;
-    bottom: 18%;
-
-    transform: rotate(-20deg);
-}
-
-
-/* العمود */
-
-.column {
-
-    position: absolute;
-
-    width: 27px;
-    height: 27px;
-
-    border: 3px solid #d7e4f5;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.wrong-column {
-
-    left: 45%;
-    top: 48%;
-}
-
-
-/* الأخطاء بعد اكتشافها */
-
-.wrong-door.found,
-.wrong-window.found,
-.wrong-stairs.found,
-.wrong-column.found,
-.bathroom-door.found {
-
-    background: rgba(127,255,160,0.25);
-
-    border-color: #7fffa0;
-
-    box-shadow:
-        0 0 20px rgba(127,255,160,0.5);
-}
-
-.message {
-
-    position: absolute;
-
-    bottom: 22px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    color: #aebbd0;
-
-    text-align: center;
-
-    line-height: 1.8;
-
-    font-size: 15px;
-}
-
 
 /* =========================
-   نجاح المرحلة الأولى
+   STAGE 1
 ========================= */
 
-#successScreen {
-    display: none;
+#stage1{
+    background:#07101d;
 }
 
+.stage-container{
+    width:min(1100px,100%);
+}
 
-/* =========================
-   المرحلة الثانية
-========================= */
+.stage-header{
+    text-align:center;
+    margin-bottom:25px;
+}
 
-#stage2 {
+.stage-number{
+    color:#7196c9;
+    font-size:12px;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
 
-    display: none;
+.stage-title{
+    font-size:28px;
+    margin-bottom:8px;
+}
 
-    position: relative;
+.stage-description{
+    color:#8e9aab;
+    font-size:14px;
+}
 
-    width: 100vw;
-    height: 100vh;
-
+.blueprint{
+    position:relative;
+    width:100%;
+    max-width:950px;
+    height:520px;
+    margin:auto;
     background:
-
-        radial-gradient(
-            circle at center,
-            #172236 0%,
-            #090e18 65%
-        );
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* عنوان المرحلة الثانية */
-
-.stage2-title {
-
-    position: absolute;
-
-    top: 28px;
-    right: 30px;
-
-    font-size: 22px;
-}
-
-
-/* الوصف */
-
-.stage2-subtitle {
-
-    position: absolute;
-
-    top: 65px;
-    right: 30px;
-
-    color: #9daabe;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   المكتب
-========================= */
-
-.office {
-
-    position: relative;
-
-    width: 85%;
-    max-width: 950px;
-
-    height: 65%;
-
-    border: 1px solid rgba(220,230,245,0.2);
-
-    background:
-
-        linear-gradient(
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px
-        );
-
-    background-size: 30px 30px;
-
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+        #0b1421;
+    background-size:25px 25px;
+    border:1px solid rgba(120,170,255,.25);
     box-shadow:
-        0 0 60px rgba(0,0,0,0.5);
-
-    overflow: hidden;
+        0 0 50px rgba(30,90,160,.08),
+        inset 0 0 40px rgba(0,0,0,.35);
+    overflow:hidden;
 }
 
-
-/* الأرض */
-
-.floor {
-
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 24%;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.03) 1px,
-            transparent 1px
-        );
-
-    background-size: 45px 45px;
-
-    border-top: 1px solid rgba(255,255,255,0.1);
+.blueprint:before{
+    content:"";
+    position:absolute;
+    inset:12px;
+    border:1px solid rgba(120,170,255,.12);
+    pointer-events:none;
 }
 
+/* rooms */
 
-/* النافذة */
-
-.big-window {
-
-    position: absolute;
-
-    top: 8%;
-    right: 8%;
-
-    width: 28%;
-    height: 40%;
-
-    border: 2px solid rgba(170,200,235,0.5);
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(80,130,190,0.18),
-            rgba(10,20,35,0.8)
-        );
+.room{
+    position:absolute;
+    border:2px solid rgba(160,190,225,.65);
+    background:rgba(20,35,55,.35);
 }
 
-
-/* تقسيم النافذة */
-
-.big-window::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 0;
-
-    width: 2px;
-    height: 100%;
-
-    background: rgba(170,200,235,0.4);
+.room-label{
+    position:absolute;
+    color:rgba(190,205,225,.45);
+    font-size:10px;
+    top:8px;
+    right:10px;
 }
 
-.big-window::after {
+/* room positions */
 
-    content: "";
-
-    position: absolute;
-
-    top: 50%;
-
-    left: 0;
-
-    width: 100%;
-    height: 2px;
-
-    background: rgba(170,200,235,0.4);
+.room1{
+    left:6%;
+    top:8%;
+    width:29%;
+    height:35%;
 }
 
+.room2{
+    left:35%;
+    top:8%;
+    width:28%;
+    height:35%;
+}
+
+.room3{
+    left:63%;
+    top:8%;
+    width:31%;
+    height:35%;
+}
+
+.room4{
+    left:6%;
+    top:43%;
+    width:37%;
+    height:48%;
+}
+
+.room5{
+    left:43%;
+    top:43%;
+    width:51%;
+    height:48%;
+}
+
+/* doors */
+
+.door{
+    position:absolute;
+    width:45px;
+    height:9px;
+    background:#07101d;
+    border:2px solid rgba(180,205,235,.8);
+    cursor:pointer;
+    z-index:5;
+    transition:.25s;
+}
+
+.door:hover{
+    background:#182d4b;
+    box-shadow:0 0 15px rgba(100,170,255,.25);
+}
+
+.wrong-door{
+    left:26%;
+    top:42%;
+    transform:rotate(90deg);
+}
+
+/* windows */
+
+.window{
+    position:absolute;
+    width:70px;
+    height:12px;
+    border:2px solid rgba(130,190,255,.7);
+    background:rgba(70,140,220,.12);
+    cursor:pointer;
+    z-index:5;
+}
+
+.window:hover{
+    box-shadow:0 0 18px rgba(80,170,255,.3);
+}
+
+.wrong-window{
+    right:4%;
+    top:48%;
+}
+
+/* stairs */
+
+.stairs{
+    position:absolute;
+    left:47%;
+    top:12%;
+    width:95px;
+    height:80px;
+    cursor:pointer;
+    z-index:6;
+    padding:8px;
+}
+
+.stairs span{
+    display:block;
+    height:8px;
+    border-top:2px solid rgba(190,210,235,.65);
+    margin-bottom:5px;
+}
+
+.stairs:hover{
+    background:rgba(70,130,200,.08);
+}
+
+/* column */
+
+.column{
+    position:absolute;
+    width:20px;
+    height:75px;
+    background:rgba(150,170,195,.4);
+    border:2px solid rgba(190,210,235,.6);
+    cursor:pointer;
+    z-index:7;
+}
+
+.wrong-column{
+    left:60%;
+    top:63%;
+}
+
+.column:hover{
+    box-shadow:0 0 15px rgba(120,170,255,.25);
+}
+
+/* bathroom */
+
+.bathroom-door{
+    position:absolute;
+    right:17%;
+    bottom:8%;
+    width:52px;
+    height:12px;
+    border:2px solid rgba(200,215,235,.7);
+    cursor:pointer;
+    z-index:8;
+}
+
+.bathroom-door:hover{
+    background:rgba(100,150,220,.12);
+}
+
+/* found effect */
+
+.found-error{
+    background:rgba(80,160,255,.18)!important;
+    box-shadow:
+        0 0 15px rgba(90,170,255,.5),
+        inset 0 0 10px rgba(90,170,255,.2);
+}
+
+.counter{
+    text-align:center;
+    margin-top:18px;
+    color:#8497b2;
+    font-size:13px;
+}
+
+.counter strong{
+    color:#fff;
+}
 
 /* =========================
-   الطاولة
+   SUCCESS 1
 ========================= */
 
-.desk {
-
-    position: absolute;
-
-    left: 20%;
-    bottom: 25%;
-
-    width: 50%;
-    height: 14%;
-
-    background: #182334;
-
-    border: 1px solid rgba(220,230,245,0.25);
-
-    box-shadow:
-        0 12px 20px rgba(0,0,0,0.4);
+#success1{
+    background:#050810;
+    text-align:center;
 }
 
-
-/* أرجل الطاولة */
-
-.desk::before,
-.desk::after {
-
-    content: "";
-
-    position: absolute;
-
-    bottom: -80px;
-
-    width: 8px;
-    height: 80px;
-
-    background: #121b2a;
+.success-box{
+    max-width:600px;
 }
 
-.desk::before {
-    left: 8%;
+.success-icon{
+    font-size:48px;
+    margin-bottom:25px;
 }
 
-.desk::after {
-    right: 8%;
+.success-title{
+    font-size:30px;
+    margin-bottom:15px;
 }
 
+.success-text{
+    color:#9ca9bd;
+    line-height:1.9;
+    margin-bottom:30px;
+}
 
 /* =========================
-   شاشة الكمبيوتر
+   STAGE 2
 ========================= */
 
-.monitor {
-
-    position: absolute;
-
-    left: 38%;
-    bottom: 39%;
-
-    width: 22%;
-    height: 20%;
-
-    background: #080d15;
-
-    border: 3px solid #65758e;
-
-    box-shadow:
-        0 0 25px rgba(90,150,255,0.1);
+#stage2{
+    background:#080d16;
 }
 
-.monitor-screen {
+.office{
+    position:relative;
+    width:min(1050px,100%);
+    height:570px;
+    margin:auto;
+    overflow:hidden;
+    border:1px solid rgba(130,170,220,.2);
+    background:
+        linear-gradient(
+            180deg,
+            #101a29 0%,
+            #0d1520 62%,
+            #080c12 62%,
+            #080c12 100%
+        );
+    box-shadow:0 0 60px rgba(0,0,0,.45);
+}
 
-    position: absolute;
+/* window */
 
-    left: 8%;
-    top: 8%;
-
-    width: 84%;
-    height: 78%;
-
+.office-window{
+    position:absolute;
+    left:7%;
+    top:8%;
+    width:30%;
+    height:48%;
+    border:5px solid #1a2635;
     background:
         linear-gradient(
             135deg,
-            rgba(90,150,255,0.12),
-            rgba(30,50,80,0.3)
+            rgba(90,145,205,.18),
+            rgba(20,35,60,.4)
         );
-
-    border: 1px solid rgba(130,170,220,0.25);
 }
 
-.monitor-stand {
-
-    position: absolute;
-
-    left: 43%;
-    bottom: -35px;
-
-    width: 14%;
-    height: 35px;
-
-    background: #65758e;
+.office-window:before,
+.office-window:after{
+    content:"";
+    position:absolute;
+    background:#1a2635;
 }
 
-
-/* =========================
-   الكرسي
-========================= */
-
-.chair {
-
-    position: absolute;
-
-    left: 50%;
-    bottom: 12%;
-
-    width: 12%;
-    height: 25%;
-
-    border: 2px solid #6e7d92;
-
-    border-radius: 8px;
+.office-window:before{
+    width:5px;
+    height:100%;
+    left:50%;
+    top:0;
 }
 
-
-/* =========================
-   نبتة
-========================= */
-
-.plant {
-
-    position: absolute;
-
-    left: 8%;
-    bottom: 23%;
-
-    width: 10%;
-    height: 18%;
+.office-window:after{
+    height:5px;
+    width:100%;
+    top:50%;
+    left:0;
 }
 
+/* desk */
 
-/* الأصيص */
-
-.pot {
-
-    position: absolute;
-
-    bottom: 0;
-    left: 28%;
-
-    width: 45%;
-    height: 35%;
-
-    background: #59687b;
-
-    clip-path: polygon(
-        10% 0,
-        90% 0,
-        75% 100%,
-        25% 100%
-    );
+.desk{
+    position:absolute;
+    left:11%;
+    bottom:20%;
+    width:62%;
+    height:22px;
+    background:#252d38;
+    border:1px solid #384453;
 }
 
-
-/* أوراق */
-
-.leaf {
-
-    position: absolute;
-
-    width: 45%;
-    height: 35%;
-
-    border-radius: 100% 0;
-
-    background: #728b7c;
-
+.desk:before,
+.desk:after{
+    content:"";
+    position:absolute;
+    bottom:-125px;
+    width:10px;
+    height:125px;
+    background:#1b222c;
 }
 
-.leaf1 {
-    left: 10%;
-    top: 10%;
-    transform: rotate(-30deg);
+.desk:before{
+    left:25px;
 }
 
-.leaf2 {
-    right: 5%;
-    top: 5%;
-    transform: rotate(40deg);
+.desk:after{
+    right:25px;
 }
 
-.leaf3 {
-    left: 30%;
-    top: -5%;
-    transform: rotate(5deg);
+/* monitor */
+
+.monitor{
+    position:absolute;
+    left:30%;
+    bottom:24%;
+    width:170px;
+    height:105px;
+    border:7px solid #171e28;
+    background:#070b11;
 }
 
+.monitor:after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-42px;
+    width:8px;
+    height:38px;
+    background:#1b222b;
+    transform:translateX(-50%);
+}
 
-/* =========================
-   الغرض الغريب
-========================= */
+/* chair */
 
-/*
-   الغرض الغريب هو:
-   كُرة صغيرة مضيئة على الأرض.
-   ما رح نكتب إنه غريب.
-*/
+.chair{
+    position:absolute;
+    right:18%;
+    bottom:16%;
+    width:75px;
+    height:120px;
+}
 
-.strange-object {
+.chair:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:15px;
+    width:48px;
+    height:65px;
+    background:#202a36;
+    border:1px solid #3a4655;
+    border-radius:5px;
+}
 
-    position: absolute;
+.chair:after{
+    content:"";
+    position:absolute;
+    top:62px;
+    left:30px;
+    width:10px;
+    height:58px;
+    background:#171d25;
+}
 
-    right: 42%;
-    bottom: 12%;
+/* plant */
 
-    width: 42px;
-    height: 42px;
+.plant{
+    position:absolute;
+    right:7%;
+    bottom:18%;
+    width:100px;
+    height:150px;
+}
 
-    border-radius: 50%;
+.pot{
+    position:absolute;
+    bottom:0;
+    left:27px;
+    width:48px;
+    height:55px;
+    background:#333a42;
+    clip-path:polygon(8% 0,92% 0,78% 100%,22% 100%);
+}
 
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #dce8ff,
-            #5d79a5 45%,
-            #1c2b42 75%
-        );
+.leaf{
+    position:absolute;
+    width:38px;
+    height:65px;
+    border-radius:50%;
+    background:#172b2c;
+    border:1px solid #274447;
+    transform-origin:bottom center;
+}
 
+.leaf1{
+    left:25px;
+    bottom:45px;
+    transform:rotate(-28deg);
+}
+
+.leaf2{
+    left:48px;
+    bottom:48px;
+    transform:rotate(25deg);
+}
+
+.leaf3{
+    left:38px;
+    bottom:65px;
+    transform:rotate(0deg);
+}
+
+/* strange object */
+
+.strange-object{
+    position:absolute;
+    right:8%;
+    bottom:10%;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:#8fbaff;
     box-shadow:
-        0 0 18px rgba(120,170,255,0.12);
-
-    cursor: pointer;
-
-    transition: 0.4s;
+        0 0 8px #8fbaff,
+        0 0 25px rgba(100,170,255,.6);
+    cursor:pointer;
+    animation:subtlePulse 2s infinite;
 }
 
-
-/* عند اكتشافه */
-
-.strange-object.found {
-
-    transform: scale(1.25);
-
-    box-shadow:
-        0 0 35px rgba(127,255,180,0.55);
+.strange-object:hover{
+    transform:scale(1.25);
 }
 
+@keyframes subtlePulse{
+    0%,100%{
+        opacity:.65;
+        box-shadow:0 0 8px #8fbaff,
+        0 0 20px rgba(100,170,255,.45);
+    }
 
-/* =========================
-   نجاح المرحلة الثانية
-========================= */
-
-#success2 {
-
-    display: none;
+    50%{
+        opacity:1;
+        box-shadow:0 0 12px #a9cbff,
+        0 0 32px rgba(100,170,255,.7);
+    }
 }
 
-
-/* =========================
-   موبايل
-========================= */
-
-@media (max-width: 600px) {
-
-    .card h1 {
-        font-size: 34px;
-    }
-
-    .card p {
-        font-size: 16px;
-    }
-
-    .blueprint {
-        width: 94%;
-        height: 60%;
-    }
-
-    .stage-title,
-    .stage2-title {
-        font-size: 17px;
-        right: 15px;
-    }
-
-    .counter,
-    .stage2-subtitle {
-        right: 15px;
-    }
-
-    .office {
-        width: 94%;
-        height: 58%;
-    }
-
+.stage2-note{
+    text-align:center;
+    color:#7e8da4;
+    margin-top:18px;
+    font-size:13px;
 }
 
 </style>
-
 </head>
-
 
 <body>
 
+<!-- =========================
+     INTRO
+========================= -->
 
-<!-- ==================================
-     البداية
-================================== -->
+<section id="intro" class="screen active">
 
-<div id="introScreen" class="screen">
+    <div class="intro-box">
 
-    <div class="card">
+        <div class="small-label">
+            CLASSIFIED PROJECT
+        </div>
 
-        <h1>
+        <h1 class="intro-title">
             المشروع 25
         </h1>
 
-        <p>
-
-            مهمتك: الوصول إلى نهاية المشروع.
-
-            <br>
-
-            أربع مراحل.
-
-            <br>
-
-            أربع اختبارات.
-
-            <br>
-
-            ولا يوجد زر لتخطي أي مرحلة. 😌
-
+        <p class="intro-subtitle">
+            ملف سري.<br>
+            أربع مراحل فقط.<br>
+            والنتيجة... تعتمد عليك.
         </p>
 
-        <button onclick="startProject()">
-
+        <button class="start-btn" onclick="startProject()">
             ابدأ المشروع
-
         </button>
 
     </div>
 
-</div>
+</section>
 
 
+<!-- =========================
+     STAGE 1
+========================= -->
 
-<!-- ==================================
-     المرحلة الأولى
-================================== -->
+<section id="stage1" class="screen">
 
-<div id="stage1">
+    <div class="stage-container">
 
-    <div class="stage-title">
+        <div class="stage-header">
 
-        المرحلة الأولى — العين المعمارية
+            <div class="stage-number">
+                STAGE 01
+            </div>
+
+            <h2 class="stage-title">
+                العين المعمارية
+            </h2>
+
+            <p class="stage-description">
+                المخطط أمامك يبدو طبيعيًا... لكنه ليس كذلك.
+                اكتشف الأخطاء الخمسة.
+            </p>
+
+        </div>
+
+
+        <div class="blueprint">
+
+            <div class="room room1">
+                <span class="room-label">ROOM 01</span>
+            </div>
+
+            <div class="room room2">
+                <span class="room-label">ROOM 02</span>
+            </div>
+
+            <div class="room room3">
+                <span class="room-label">ROOM 03</span>
+            </div>
+
+            <div class="room room4">
+                <span class="room-label">ROOM 04</span>
+            </div>
+
+            <div class="room room5">
+                <span class="room-label">ROOM 05</span>
+            </div>
+
+
+            <!-- ERROR 1 -->
+            <div
+                class="door wrong-door"
+                onclick="findError(this)">
+            </div>
+
+
+            <!-- ERROR 2 -->
+            <div
+                class="window wrong-window"
+                onclick="findError(this)">
+            </div>
+
+
+            <!-- ERROR 3 -->
+            <div
+                class="stairs"
+                onclick="findError(this)"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+
+            <!-- ERROR 4 -->
+            <div
+                class="column wrong-column"
+                onclick="findError(this)">
+            </div>
+
+
+            <!-- ERROR 5 -->
+            <div
+                class="bathroom-door"
+                onclick="findError(this)">
+            </div>
+
+        </div>
+
+
+        <div class="counter">
+            الأخطاء المكتشفة:
+            <strong>
+                <span id="errorCount">0</span>/5
+            </strong>
+        </div>
 
     </div>
 
-
-    <div class="counter">
-
-        الأخطاء المكتشفة:
-
-        <span id="count">0</span> / 5
-
-    </div>
+</section>
 
 
-    <div class="blueprint">
+<!-- =========================
+     SUCCESS 1
+========================= -->
 
+<section id="success1" class="screen">
 
-        <!-- الغرف -->
+    <div class="success-box">
 
-        <div class="room living">
-            Living Room
+        <div class="success-icon">
+            ✓
         </div>
 
-        <div class="room kitchen">
-            Kitchen
-        </div>
+        <h2 class="success-title">
+            تم اكتشاف الخلل.
+        </h2>
 
-        <div class="room bedroom">
-            Bedroom
-        </div>
-
-        <div class="room bathroom">
-            Bathroom
-        </div>
-
-
-        <!-- باب طبيعي -->
-
-        <div class="door normal-door"></div>
-
-
-        <!-- الخطأ 1 -->
-
-        <div
-            class="door wrong-door"
-            onclick="findError(this)"
-        ></div>
-
-
-        <!-- الخطأ 2 -->
-
-        <div
-            class="window wrong-window"
-            onclick="findError(this)"
-        ></div>
-
-
-        <!-- الخطأ 3 -->
-
-        <div
-            class="stairs wrong-stairs"
-            onclick="findError(this)"
-        >
-
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-
-        </div>
-
-
-        <!-- الخطأ 4 -->
-
-        <div
-            class="column wrong-column"
-            onclick="findError(this)"
-        ></div>
-
-
-        <!-- الخطأ 5 -->
-
-        <div
-            class="door bathroom-door"
-            onclick="findError(this)"
-        ></div>
-
-
-    </div>
-
-
-    <div class="message">
-
-        في هذا المخطط 5 أخطاء.
-
-        <br>
-
-        لا توجد علامات تدلّك عليها...
-
-        اكتشفها بنفسك. 👀
-
-    </div>
-
-</div>
-
-
-
-<!-- ==================================
-     نجاح المرحلة الأولى
-================================== -->
-
-<div id="successScreen" class="screen">
-
-    <div class="card">
-
-        <h1>
-            أحسنت. 👀
-        </h1>
-
-        <p>
-
-            تم اكتشاف جميع الأخطاء.
-
-            <br>
-
-            يبدو أنك تستحق الانتقال للمرحلة التالية.
-
+        <p class="success-text">
+            خمس أخطاء.<br>
+            واضح إن العين المعمارية عندك شغالة تمام.
         </p>
 
-
-        <button onclick="goToStage2()">
-
-            تابع
-
+        <button
+            class="next-btn"
+            onclick="goToStage2()">
+            المرحلة التالية
         </button>
 
     </div>
 
-</div>
+</section>
 
 
+<!-- =========================
+     STAGE 2
+========================= -->
 
-<!-- ==================================
-     المرحلة الثانية
-================================== -->
+<section id="stage2" class="screen">
 
-<div id="stage2">
+    <div class="stage-container">
 
+        <div class="stage-header">
 
-    <div class="stage2-title">
+            <div class="stage-number">
+                STAGE 02
+            </div>
 
-        المرحلة الثانية — شيء ليس في مكانه
+            <h2 class="stage-title">
+                شيء ليس في مكانه
+            </h2>
 
-    </div>
-
-
-    <div class="stage2-subtitle">
-
-        أحيانًا الشيء الغريب لا يحاول أن يلفت انتباهك.
-
-    </div>
-
-
-    <div class="office">
-
-
-        <!-- النافذة -->
-
-        <div class="big-window"></div>
-
-
-        <!-- الأرض -->
-
-        <div class="floor"></div>
-
-
-        <!-- الطاولة -->
-
-        <div class="desk"></div>
-
-
-        <!-- الشاشة -->
-
-        <div class="monitor">
-
-            <div class="monitor-screen"></div>
-
-            <div class="monitor-stand"></div>
+            <p class="stage-description">
+                كل شيء يبدو طبيعيًا...
+                لكن هناك شيء واحد لا ينتمي إلى هذا المكان.
+            </p>
 
         </div>
 
 
-        <!-- الكرسي -->
+        <div class="office">
 
-        <div class="chair"></div>
+            <div class="office-window"></div>
+
+            <div class="desk"></div>
+
+            <div class="monitor"></div>
+
+            <div class="chair"></div>
 
 
-        <!-- النبتة -->
+            <div class="plant">
 
-        <div class="plant">
+                <div class="leaf leaf1"></div>
+                <div class="leaf leaf2"></div>
+                <div class="leaf leaf3"></div>
 
-            <div class="leaf leaf1"></div>
+                <div class="pot"></div>
 
-            <div class="leaf leaf2"></div>
+            </div>
 
-            <div class="leaf leaf3"></div>
 
-            <div class="pot"></div>
+            <!-- الشيء الغريب -->
+            <div
+                class="strange-object"
+                onclick="findStrangeObject(this)">
+            </div>
 
         </div>
 
 
-        <!-- الشيء الغريب -->
-
-        <div
-            class="strange-object"
-            onclick="findStrangeObject(this)"
-        ></div>
-
+        <div class="stage2-note">
+            أحيانًا الشيء الغريب لا يصرخ ليتم اكتشافه.
+        </div>
 
     </div>
 
+</section>
+<!-- =========================
+     SUCCESS 2
+========================= -->
 
-</div>
+<section id="success2" class="screen">
 
+    <div class="success-box">
 
+        <div class="success-icon">
+            👀
+        </div>
 
-<!-- ==================================
-     نجاح المرحلة الثانية
-================================== -->
+        <h2 class="success-title">
+            وجدته.
+        </h2>
 
-<div id="success2" class="screen">
-
-    <div class="card">
-
-        <h1>
-            وجدته. 👀
-        </h1>
-
-
-        <p>
-
-            أحيانًا التفاصيل الصغيرة
-
-            <br>
-
-            هي التي تغيّر الصورة كلها.
-
+        <p class="success-text">
+            أحيانًا التفاصيل الصغيرة هي التي تغيّر الصورة كلها.
         </p>
 
-
-        <button onclick="goToStage3()">
-
+        <button
+            class="next-btn"
+            onclick="goToStage3()">
             تابع
-
         </button>
 
     </div>
 
-</div>
+</section>
 
 
-
-<script>
-
-/* =========================
-   المتغيرات
-========================= */
-
-let found = 0;
-
-
-/* =========================
-   بدء المشروع
-========================= */
-
-function startProject() {
-
-    document.getElementById("introScreen").style.display = "none";
-
-    document.getElementById("stage1").style.display = "flex";
-
-}
-
-
-/* =========================
-   اكتشاف أخطاء المرحلة الأولى
-========================= */
-
-function findError(element) {
-
-    if (element.classList.contains("found")) {
-
-        return;
-
-    }
-
-
-    element.classList.add("found");
-
-
-    found++;
-
-
-    document.getElementById("count").textContent = found;
-
-
-    if (found === 5) {
-
-        setTimeout(function() {
-
-            document.getElementById("stage1").style.display = "none";
-
-            document.getElementById("successScreen").style.display = "flex";
-
-        }, 800);
-
-    }
-
-}
-
-
-/* =========================
-   الانتقال للمرحلة الثانية
-========================= */
-
-function goToStage2() {
-
-    document.getElementById("successScreen").style.display = "none";
-
-    document.getElementById("stage2").style.display = "flex";
-
-}
-
-
-/* =========================
-   اكتشاف الشيء الغريب
-========================= */
-
-function findStrangeObject(element) {
-
-    element.classList.add("found");
-
-
-    setTimeout(function() {
-
-        document.getElementById("stage2").style.display = "none";
-
-        document.getElementById("success2").style.display = "flex";
-
-    }, 800);
-
-}
-
-
-/* =========================
-   المرحلة الثالثة
-========================= */
-
-
-
-
-
-</script>
 <!-- =========================
      STAGE 3
 ========================= -->
 
-<div id="stage3" class="screen" style="display:none;">
+<section id="stage3" class="screen">
 
-  <div class="stage3-card">
+    <div class="stage-container">
 
-    <div class="stage-number">03 / 04</div>
+        <div class="stage-header">
 
-    <h1>اختبار لا يحتاج شهادة هندسة</h1>
+            <div class="stage-number">
+                STAGE 03
+            </div>
 
-    <p class="stage3-question">
-      ما الاستخدام الحقيقي للريلز بين الأصدقاء؟
-    </p>
+            <h2 class="stage-title">
+                اختبار لا يحتاج شهادة هندسة
+            </h2>
 
-    <div class="options">
+            <p class="stage-description">
+                سؤال مهم جدًا... ويمكن أهم من كل اللي قبله.
+            </p>
 
-      <button onclick="wrongAnswer()">
-        <span>A</span>
-        تبادل المعرفة
-      </button>
+        </div>
 
-      <button onclick="wrongAnswer()">
-        <span>B</span>
-        متابعة الأخبار
-      </button>
 
-      <button onclick="wrongAnswer()">
-        <span>C</span>
-        إرسال شيء مضحك بدون سياق الساعة 2 بالليل
-      </button>
+        <div class="quiz-box">
 
-      <button onclick="correctAnswer()">
-        <span>D</span>
-        جميع ما سبق، لكننا نعرف الحقيقة.
-      </button>
+            <div class="quiz-question">
+                ما الاستخدام الحقيقي للريلز بين الأصدقاء؟
+            </div>
+
+
+            <div class="options">
+
+                <button
+                    class="option"
+                    onclick="wrongAnswer(this)">
+                    A — تبادل المعرفة
+                </button>
+
+                <button
+                    class="option"
+                    onclick="wrongAnswer(this)">
+                    B — متابعة الأخبار
+                </button>
+
+                <button
+                    class="option"
+                    onclick="wrongAnswer(this)">
+                    C — إرسال شيء مضحك بدون سياق الساعة 2 بالليل
+                </button>
+
+                <button
+                    class="option correct"
+                    onclick="correctAnswer(this)">
+                    D — جميع ما سبق، لكننا نعرف الحقيقة
+                </button>
+
+            </div>
+
+
+            <div
+                id="wrongMessage"
+                class="answer-message">
+            </div>
+
+        </div>
 
     </div>
 
-    <p id="wrongMessage" class="answer-message"></p>
+</section>
 
-    <div id="correctBox" style="display:none;">
-      <p class="correct-message">
-        إجابة صحيحة.<br>
-        لا أحد يرسل ريلًا واحدًا فقط. 😂
-      </p>
 
-      <button class="continue-btn" onclick="goToStage4()">
-        تابع
-      </button>
+<!-- =========================
+     STAGE 4
+========================= -->
+
+<section id="stage4" class="screen">
+
+    <div class="stage-container">
+
+        <div class="stage-header">
+
+            <div class="stage-number">
+                STAGE 04
+            </div>
+
+            <h2 class="stage-title">
+                Preparing final result...
+            </h2>
+
+            <p class="stage-description">
+                لحظة واحدة...
+            </p>
+
+        </div>
+
+
+        <div class="loading-box">
+
+            <div class="loading-number">
+                <span id="progressNumber">0</span>%
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar">
+                </div>
+
+            </div>
+
+            <div
+                id="loadingText"
+                class="loading-text">
+                Initializing project...
+            </div>
+
+        </div>
+
     </div>
 
-  </div>
-
-</div>
+</section>
 
 
+<!-- =========================
+     ERROR
+========================= -->
+
+<section id="errorScreen" class="screen">
+
+    <div class="error-box">
+
+        <div class="error-code">
+            ERROR 404
+        </div>
+
+        <h2>
+            Something is missing.
+        </h2>
+
+        <p>
+            المشروع جاهز تقريبًا...
+            لكن يبدو أن هناك شيئًا ناقصًا.
+        </p>
+
+
+        <div class="error-buttons">
+
+            <button
+                class="retry-btn"
+                onclick="startLoading()">
+                TRY AGAIN
+            </button>
+
+            <button
+                class="retry-btn"
+                onclick="ignoreError()">
+                IGNORE ERROR
+            </button>
+
+            <button
+                class="retry-btn main-error-btn"
+                onclick="findMissing()">
+                FIND WHAT'S MISSING
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PUZZLE
+========================= -->
+
+<section id="puzzle" class="screen">
+
+    <div class="puzzle-box">
+
+        <div class="stage-number">
+            FINAL CHECK
+        </div>
+
+        <h2>
+            Find what's missing.
+        </h2>
+
+        <p class="puzzle-description">
+            هناك شيء ناقص في المشروع.
+            رتّب الأحرف بالشكل الصحيح.
+        </p>
+
+
+        <div
+            id="letters"
+            class="letters">
+        </div>
+
+
+        <div
+            id="selectedWord"
+            class="selected-word">
+        </div>
+
+
+        <div
+            id="puzzleMessage"
+            class="puzzle-message">
+        </div>
+
+
+        <button
+            id="resetPuzzle"
+            class="retry-btn"
+            onclick="resetPuzzle()">
+            RESET
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section id="final" class="screen">
+
+    <div class="final-box">
+
+        <div class="lights">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+
+        <div class="final-title">
+            HAPPY BIRTHDAY
+        </div>
+
+
+        <div class="final-name">
+            يا داوود 🤍
+        </div>
+
+
+        <div class="final-message">
+
+            كل عام وانت بألف خييييير يارب، ألطف شخص تعرفت عليه<br>
+            عقبال المية سنة وان شاء الله شوفك بالمكان يلي بتتمناه ع طول ويبعتلك ايام حلوة وكلها خير يارب🥹🤍🤍🤍<br>
+            صح ما صرلنا زمان منعرف بعض بس ع طول بقول الشغلة مو بالوقت وانما بالشخص 🤍<br>
+            ان شاء الله تعجبك المعايدة 🤣🤍🤍🤍.
+
+        </div>
+
+    </div>
+
+</section>
 <style>
 
-#stage3 {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at top, #172238 0%, #090d16 45%, #05070c 100%);
-  padding: 25px;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+/* =========================
+   STAGE 3
+========================= */
+
+#stage3{
+    background:#070b12;
 }
 
-.stage3-card {
-  width: min(620px, 92%);
-  padding: 45px 35px;
-  background: rgba(12, 18, 30, 0.92);
-  border: 1px solid rgba(130, 170, 220, 0.22);
-  border-radius: 22px;
-  box-shadow:
-    0 0 50px rgba(60, 120, 200, 0.08),
-    inset 0 0 30px rgba(255,255,255,0.015);
-  text-align: center;
+.quiz-box{
+    width:min(750px,100%);
+    margin:30px auto 0;
+    padding:40px 30px;
+    border:1px solid rgba(120,170,255,.2);
+    background:rgba(12,20,32,.75);
+    box-shadow:0 0 50px rgba(0,0,0,.3);
+    text-align:center;
 }
 
-.stage-number {
-  font-size: 12px;
-  letter-spacing: 4px;
-  color: #6e8db8;
-  margin-bottom: 25px;
+.quiz-question{
+    font-size:22px;
+    line-height:1.8;
+    margin-bottom:30px;
 }
 
-.stage3-card h1 {
-  color: #f1f5fb;
-  font-size: 27px;
-  margin-bottom: 35px;
+.options{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-.stage3-question {
-  color: #dce5f2;
-  font-size: 19px;
-  margin-bottom: 30px;
+.option{
+    width:100%;
+    padding:16px 20px;
+    border:1px solid rgba(120,150,190,.25);
+    background:#0d1725;
+    color:#dce5f3;
+    cursor:pointer;
+    border-radius:4px;
+    font-size:14px;
+    transition:.25s;
+    text-align:right;
 }
 
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.option:hover{
+    background:#14243a;
+    border-color:rgba(120,170,255,.5);
+    transform:translateX(-3px);
 }
 
-.options button {
-  width: 100%;
-  padding: 17px 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(130, 170, 220, 0.18);
-  background: rgba(255,255,255,0.035);
-  color: #dce5f2;
-  font-size: 15px;
-  text-align: right;
-  cursor: pointer;
-  transition: 0.25s;
+.answer-message{
+    min-height:30px;
+    margin-top:20px;
+    color:#9fbbe5;
+    line-height:1.7;
 }
 
-.options button:hover {
-  background: rgba(100, 150, 220, 0.10);
-  border-color: rgba(130, 170, 220, 0.45);
-  transform: translateY(-2px);
+
+/* =========================
+   STAGE 4
+========================= */
+
+#stage4{
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(50,90,150,.08),
+            transparent 55%
+        ),
+        #050810;
 }
 
-.options button span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 27px;
-  height: 27px;
-  border-radius: 50%;
-  background: rgba(120,160,210,0.12);
-  color: #8eadd4;
-  margin-left: 10px;
-  font-size: 13px;
+.loading-box{
+    width:min(650px,100%);
+    margin:45px auto 0;
+    text-align:center;
 }
 
-.answer-message {
-  min-height: 25px;
-  margin-top: 20px;
-  color: #9eacc0;
-  font-size: 14px;
+.loading-number{
+    font-size:54px;
+    font-weight:300;
+    margin-bottom:25px;
+    letter-spacing:2px;
 }
 
-.correct-message {
-  color: #dce9f8;
-  line-height: 1.8;
-  margin-top: 25px;
+.progress-track{
+    width:100%;
+    height:4px;
+    background:#172131;
+    overflow:hidden;
+    border-radius:5px;
 }
 
-.continue-btn {
-  margin-top: 18px;
-  padding: 13px 35px;
-  border: none;
-  border-radius: 10px;
-  background: #dce9f8;
-  color: #0b1019;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.25s;
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:#91b9ef;
+    transition:width .08s linear;
+    box-shadow:0 0 15px rgba(120,180,255,.6);
 }
 
-.continue-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(200,220,255,0.15);
+.loading-text{
+    margin-top:20px;
+    color:#718198;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+
+/* =========================
+   ERROR SCREEN
+========================= */
+
+#errorScreen{
+    background:#05070b;
+    text-align:center;
+}
+
+.error-box{
+    width:min(650px,100%);
+    padding:45px 30px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(12,15,21,.8);
+}
+
+.error-code{
+    color:#78879c;
+    font-size:13px;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+
+.error-box h2{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.error-box p{
+    color:#7e8a9c;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.error-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.main-error-btn{
+    border-color:rgba(130,180,255,.6);
+}
+
+
+/* =========================
+   PUZZLE
+========================= */
+
+#puzzle{
+    background:
+        linear-gradient(
+            rgba(5,8,16,.92),
+            rgba(5,8,16,.97)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 39px,
+            rgba(80,150,255,.06) 40px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 39px,
+            rgba(80,150,255,.06) 40px
+        );
+}
+
+.puzzle-box{
+    width:min(850px,100%);
+    text-align:center;
+    padding:40px 25px;
+}
+
+.puzzle-box h2{
+    font-size:30px;
+    margin:10px 0 15px;
+}
+
+.puzzle-description{
+    color:#8b98aa;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+.letters{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    direction:ltr;
+    max-width:650px;
+    margin:auto;
+}
+
+.letter{
+    width:48px;
+    height:58px;
+    border:1px solid rgba(130,175,235,.35);
+    background:#0d1725;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    cursor:pointer;
+    transition:.25s;
+    border-radius:3px;
+}
+
+.letter:hover{
+    transform:translateY(-5px);
+    background:#15263e;
+    border-color:#91b9ef;
+    box-shadow:0 0 20px rgba(90,160,255,.15);
+}
+
+.letter.used{
+    opacity:.18;
+    pointer-events:none;
+}
+
+.selected-word{
+    min-height:65px;
+    margin:35px auto 15px;
+    padding:15px;
+    border-bottom:1px solid rgba(130,170,220,.25);
+    color:#dce9fb;
+    font-size:24px;
+    letter-spacing:4px;
+    direction:ltr;
+}
+
+.puzzle-message{
+    min-height:30px;
+    color:#91b9ef;
+    margin-bottom:15px;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+#final{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(75,125,200,.16),
+            transparent 35%
+        ),
+        #050810;
+    text-align:center;
+}
+
+.final-box{
+    width:min(850px,100%);
+    position:relative;
+    padding:45px 25px;
+    animation:finalAppear 1.2s ease;
+}
+
+@keyframes finalAppear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.lights{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.lights span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#dcecff;
+    box-shadow:
+        0 0 8px #9ec9ff,
+        0 0 20px rgba(100,170,255,.7);
+    animation:lightBlink 1.5s infinite alternate;
+}
+
+.lights span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.lights span:nth-child(3){
+    animation-delay:.4s;
+}
+
+.lights span:nth-child(4){
+    animation-delay:.6s;
+}
+
+.lights span:nth-child(5){
+    animation-delay:.8s;
+}
+
+.lights span:nth-child(6){
+    animation-delay:1s;
+}
+
+.lights span:nth-child(7){
+    animation-delay:.3s;
+}
+
+.lights span:nth-child(8){
+    animation-delay:.7s;
+}
+
+.lights span:nth-child(9){
+    animation-delay:.5s;
+}
+
+.lights span:nth-child(10){
+    animation-delay:.9s;
+}
+
+@keyframes lightBlink{
+    from{
+        opacity:.35;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+.final-title{
+    font-size:clamp(32px,8vw,70px);
+    letter-spacing:5px;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.final-name{
+    color:#91b9ef;
+    font-size:25px;
+    margin-bottom:35px;
+}
+
+.final-message{
+    max-width:700px;
+    margin:auto;
+    color:#d5deeb;
+    font-size:16px;
+    line-height:2.2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .screen{
+        padding:18px;
+    }
+
+    .intro-title{
+        font-size:48px;
+    }
+
+    .stage-title{
+        font-size:23px;
+    }
+
+    .blueprint{
+        height:420px;
+    }
+
+    .office{
+        height:430px;
+    }
+
+    .quiz-box{
+        padding:28px 18px;
+    }
+
+    .quiz-question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:13px;
+    }
+
+    .error-buttons{
+        flex-direction:column;
+    }
+
+    .error-buttons button{
+        width:100%;
+    }
+
+    .final-message{
+        font-size:14px;
+        line-height:2;
+    }
+
+    .final-title{
+        letter-spacing:3px;
+    }
+
 }
 
 </style>
@@ -1472,395 +1585,274 @@ function findStrangeObject(element) {
 
 <script>
 
-function goToStage3() {
-
-  document.getElementById("success2").style.display = "none";
-  document.getElementById("stage3").style.display = "flex";
-
-}
-
-
-function wrongAnswer() {
-
-  const message = document.getElementById("wrongMessage");
-
-  message.textContent =
-    "مممم... إجابة منطقية، بس مو هي الحقيقة. 👀";
-
-}
-
-
-function correctAnswer() {
-
-  document.getElementById("wrongMessage").textContent = "";
-
-  document.querySelector(".options").style.display = "none";
-
-  document.getElementById("correctBox").style.display = "block";
-
-}
-
-
-function goToStage4() {
-
- 
-</script>
-<!-- =========================
-     STAGE 4 — FINAL
-========================= -->
-
-<div id="stage4" class="screen" style="display:none;">
-
-  <div class="loading-box">
-
-    <div class="tiny-label">FINAL STAGE</div>
-
-    <h1>Preparing final result...</h1>
-
-    <div class="progress">
-      <div id="progressBar"></div>
-    </div>
-
-    <div id="progressNumber">87%</div>
-
-  </div>
-
-</div>
-
-
-<!-- ERROR SCREEN -->
-
-<div id="errorScreen" class="screen" style="display:none;">
-
-  <div class="error-box">
-
-    <div class="error-icon">!</div>
-
-    <div class="error-code">ERROR 404</div>
-
-    <h1>Something is missing.</h1>
-
-    <p>
-      The final result cannot be completed.
-    </p>
-
-    <div class="error-buttons">
-
-      <button onclick="fakeRetry()">
-        TRY AGAIN
-      </button>
-
-      <button onclick="fakeIgnore()">
-        IGNORE ERROR
-      </button>
-
-      <button class="real-button" onclick="findMissing()">
-        FIND WHAT'S MISSING
-      </button>
-
-    </div>
-
-    <p id="errorHint"></p>
-
-  </div>
-
-</div>
-
-
-<!-- LETTER PUZZLE -->
-
-<div id="puzzleScreen" class="screen" style="display:none;">
-
-  <div class="puzzle-box">
-
-    <div class="tiny-label">FINAL STEP</div>
-
-    <h1>Something is missing.</h1>
-
-    <p>
-      رتّب الأحرف بالشكل الصحيح.
-    </p>
-
-    <div id="letters" class="letters"></div>
-
-    <p id="puzzleHint">
-      اضغط على الأحرف بالترتيب.
-    </p>
-
-    <button
-      id="resetLetters"
-      onclick="resetPuzzle()"
-      style="display:none;"
-    >
-      جرّب مرة ثانية
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- FINAL BIRTHDAY -->
-
-<div id="finalScreen" class="screen" style="display:none;">
-
-  <div class="final-content">
-
-    <div class="lights"></div>
-
-    <div class="birthday-title">
-      HAPPY BIRTHDAY
-    </div>
-
-    <div class="birthday-name">
-      داوود 🤍
-    </div>
-
-    <div class="confetti"></div>
-
-    <div class="final-message">
-
-      كل عام وانت بألف خييييير يارب، ألطف شخص تعرفت عليه
-      <br>
-      عقبال المية سنة وان شاء الله شوفك بالمكان يلي بتتمناه ع طول ويبعتلك ايام حلوة وكلها خير يارب🥹🤍🤍🤍
-      <br><br>
-      صح ما صرلنا زمان منعرف بعض بس ع طول بقول الشغلة مو بالوقت وانما بالشخص 🤍
-      <br>
-      ان شاء الله تعجبك المعايدة 🤣🤍🤍🤍
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<style>
-
 /* =========================
-   GENERAL
+   GENERAL SCREEN CONTROL
 ========================= */
 
-#stage4,
-#errorScreen,
-#puzzleScreen,
-#finalScreen {
+function showScreen(id){
 
-  min-height:100vh;
-  width:100%;
+    const screens = document.querySelectorAll(".screen");
 
-  align-items:center;
-  justify-content:center;
+    screens.forEach(function(screen){
+        screen.classList.remove("active");
+    });
 
-  background:
-    radial-gradient(
-      circle at center,
-      #17243a 0%,
-      #090d16 48%,
-      #030509 100%
-    );
+    const target = document.getElementById(id);
 
-  color:#edf3fb;
+    if(target){
+        target.classList.add("active");
+        window.scrollTo(0,0);
+    }
+}
 
-  font-family:Arial, sans-serif;
 
-  box-sizing:border-box;
+/* =========================
+   INTRO
+========================= */
 
-  padding:25px;
+function startProject(){
+
+    showScreen("stage1");
 
 }
 
 
 /* =========================
-   LOADING
+   STAGE 1
 ========================= */
 
-.loading-box {
+let errorsFound = 0;
 
-  width:min(500px,90%);
-  text-align:center;
-}
+function findError(element){
 
-.tiny-label {
+    if(element.classList.contains("found-error")){
+        return;
+    }
 
-  font-size:11px;
-  letter-spacing:4px;
-  color:#7188a7;
-  margin-bottom:25px;
-}
+    element.classList.add("found-error");
 
-.loading-box h1 {
+    errorsFound++;
 
-  font-size:25px;
-  font-weight:400;
-  margin-bottom:30px;
+    document.getElementById("errorCount").textContent = errorsFound;
 
-}
+    if(errorsFound >= 5){
 
-.progress {
+        setTimeout(function(){
 
-  width:100%;
-  height:4px;
+            showScreen("success1");
 
-  background:rgba(255,255,255,.08);
+        },700);
 
-  border-radius:10px;
-  overflow:hidden;
+    }
 
-}
-
-#progressBar {
-
-  height:100%;
-  width:0%;
-
-  background:#dbe8f8;
-
-  transition:width 2.5s ease;
-
-}
-
-#progressNumber {
-
-  margin-top:15px;
-
-  color:#7d91ae;
-
-  font-size:13px;
 }
 
 
 /* =========================
-   ERROR
+   STAGE 2
 ========================= */
 
-.error-box {
+function goToStage2(){
 
-  width:min(520px,90%);
-
-  padding:45px 35px;
-
-  text-align:center;
-
-  background:rgba(8,12,20,.92);
-
-  border:
-
-    1px solid rgba(180,200,225,.15);
-
-  border-radius:20px;
-
-  box-shadow:
-
-    0 0 70px rgba(60,100,160,.08);
+    showScreen("stage2");
 
 }
 
-.error-icon {
 
-  width:55px;
-  height:55px;
+function findStrangeObject(element){
 
-  margin:0 auto 20px;
+    if(element.dataset.found === "true"){
+        return;
+    }
 
-  display:flex;
+    element.dataset.found = "true";
 
-  align-items:center;
-  justify-content:center;
+    element.style.transform = "scale(1.4)";
+    element.style.opacity = "1";
 
-  border:1px solid #71829a;
+    setTimeout(function(){
 
-  border-radius:50%;
+        showScreen("success2");
 
-  color:#d9e4f2;
-
-  font-size:25px;
+    },500);
 
 }
 
-.error-code {
 
-  color:#71829a;
+/* =========================
+   STAGE 3
+========================= */
 
-  font-size:11px;
+function goToStage3(){
 
-  letter-spacing:3px;
-
-  margin-bottom:15px;
-
-}
-
-.error-box h1 {
-
-  font-size:25px;
-
-  font-weight:400;
-
-  margin-bottom:12px;
+    showScreen("stage3");
 
 }
 
-.error-box p {
 
-  color:#8290a3;
+function wrongAnswer(button){
 
-  font-size:14px;
+    const message = document.getElementById("wrongMessage");
 
-}
+    message.textContent =
+        "مممم... حاول مرة ثانية. 😭";
 
-.error-buttons {
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-
-  margin-top:30px;
+    button.style.borderColor =
+        "rgba(255,120,120,.4)";
 
 }
 
-.error-buttons button {
 
-  padding:14px;
+function correctAnswer(button){
 
-  border-radius:10px;
+    const message = document.getElementById("wrongMessage");
 
-  border:1px solid rgba(150,175,205,.18);
+    message.textContent =
+        "إجابة صحيحة. لا أحد يرسل ريلًا واحدًا فقط. 😂";
 
-  background:rgba(255,255,255,.025);
+    button.style.borderColor =
+        "rgba(120,190,255,.7)";
 
-  color:#aebbd0;
+    const options = document.querySelectorAll(".option");
 
-  cursor:pointer;
+    options.forEach(function(option){
+        option.style.pointerEvents = "none";
+    });
 
-  transition:.25s;
+    setTimeout(function(){
 
-}
+        showScreen("stage4");
 
-.error-buttons button:hover {
+        startLoading();
 
-  background:rgba(150,175,205,.08);
-
-  transform:translateY(-2px);
-
-}
-
-.error-buttons .real-button {
-
-  border-color:rgba(190,210,235,.35);
-
-  color:#e5edf8;
+    },1500);
 
 }
 
-#errorHint {
 
-  min-height:20px;
+/* =========================
+   STAGE 4 LOADING
+========================= */
 
-  margin-top:20px;
+let loadingStarted = false;
 
-  color:#68788e;
+function startLoading(){
+
+    if(loadingStarted){
+        return;
+    }
+
+    loadingStarted = true;
+
+    showScreen("stage4");
+
+    let progress = 0;
+
+    const number =
+        document.getElementById("progressNumber");
+
+    const bar =
+        document.getElementById("progressBar");
+
+    const text =
+        document.getElementById("loadingText");
+
+
+    const loadingMessages = [
+
+        "Initializing project...",
+
+        "Checking architecture...",
+
+        "Analyzing details...",
+
+        "Almost there...",
+
+        "Preparing final result..."
+
+    ];
+
+
+    const interval = setInterval(function(){
+
+        progress++;
+
+        number.textContent = progress;
+
+        bar.style.width = progress + "%";
+
+
+        if(progress < 20){
+
+            text.textContent =
+                loadingMessages[0];
+
+        }
+        else if(progress < 45){
+
+            text.textContent =
+                loadingMessages[1];
+
+        }
+        else if(progress < 70){
+
+            text.textContent =
+                loadingMessages[2];
+
+        }
+        else if(progress < 87){
+
+            text.textContent =
+                loadingMessages[3];
+
+        }
+        else{
+
+            text.textContent =
+                loadingMessages[4];
+
+        }
+
+
+        if(progress >= 87){
+
+            clearInterval(interval);
+
+            setTimeout(function(){
+
+                showScreen("errorScreen");
+
+                loadingStarted = false;
+
+            },700);
+
+        }
+
+    },45);
+
+}
+
+
+/* =========================
+   ERROR SCREEN
+========================= */
+
+function ignoreError(){
+
+    const message =
+        document.querySelector("#errorScreen .error-box p");
+
+    message.textContent =
+        "لا. واضح جدًا إنك ما لازم تتجاهل هالخطأ. 😭";
+
+}
+
+
+function findMissing(){
+
+    showScreen("puzzle");
+
+    createPuzzle();
 
 }
 
@@ -1869,119 +1861,136 @@ function goToStage4() {
    PUZZLE
 ========================= */
 
-.puzzle-box {
+const correctWord = "HAPPYBIRTHDAY";
 
-  width:min(650px,94%);
+let selectedLetters = "";
 
-  text-align:center;
+let puzzleCreated = false;
 
-}
 
-.puzzle-box h1 {
+function createPuzzle(){
 
-  font-size:28px;
+    if(puzzleCreated){
+        return;
+    }
 
-  font-weight:400;
+    puzzleCreated = true;
 
-}
+    const container =
+        document.getElementById("letters");
 
-.puzzle-box > p {
+    const letters =
+        correctWord.split("");
 
-  color:#8795aa;
+    /* shuffle */
 
-}
+    for(let i = letters.length - 1; i > 0; i--){
 
-.letters {
+        const j =
+            Math.floor(Math.random() * (i + 1));
 
-  display:flex;
+        [
+            letters[i],
+            letters[j]
+        ] =
+        [
+            letters[j],
+            letters[i]
+        ];
 
-  flex-wrap:wrap;
+    }
 
-  justify-content:center;
 
-  gap:10px;
+    letters.forEach(function(letter){
 
-  margin:40px auto 20px;
+        const button =
+            document.createElement("button");
 
-  max-width:600px;
+        button.className = "letter";
 
-}
+        button.textContent = letter;
 
-.letter {
+        button.onclick = function(){
 
-  width:48px;
-  height:58px;
+            chooseLetter(button,letter);
 
-  display:flex;
+        };
 
-  align-items:center;
-  justify-content:center;
+        container.appendChild(button);
 
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(255,255,255,.025)
-    );
-
-  border:
-
-    1px solid rgba(170,195,225,.25);
-
-  border-radius:9px;
-
-  color:#e8f0fa;
-
-  font-size:20px;
-
-  cursor:pointer;
-
-  transition:.25s;
+    });
 
 }
 
-.letter:hover {
 
-  transform:translateY(-5px);
+function chooseLetter(button,letter){
 
-  border-color:rgba(210,225,245,.6);
+    if(button.classList.contains("used")){
+        return;
+    }
+
+    selectedLetters += letter;
+
+    button.classList.add("used");
+
+    document.getElementById(
+        "selectedWord"
+    ).textContent = selectedLetters;
+
+
+    if(selectedLetters.length === correctWord.length){
+
+        if(selectedLetters === correctWord){
+
+            document.getElementById(
+                "puzzleMessage"
+            ).textContent =
+                "Looks better now. 🤍";
+
+            setTimeout(function(){
+
+                showFinal();
+
+            },1000);
+
+        }
+        else{
+
+            document.getElementById(
+                "puzzleMessage"
+            ).textContent =
+                "مو هيك 😭 جرّب ترتبهم من جديد.";
+
+        }
+
+    }
 
 }
 
-.letter.used {
 
-  opacity:.25;
+/* =========================
+   RESET PUZZLE
+========================= */
 
-  transform:scale(.9);
+function resetPuzzle(){
 
-  pointer-events:none;
+    selectedLetters = "";
 
-}
+    puzzleCreated = false;
 
-#puzzleHint {
+    document.getElementById(
+        "selectedWord"
+    ).textContent = "";
 
-  min-height:25px;
+    document.getElementById(
+        "puzzleMessage"
+    ).textContent = "";
 
-  color:#7d8da4;
+    document.getElementById(
+        "letters"
+    ).innerHTML = "";
 
-}
-
-#resetLetters {
-
-  margin-top:10px;
-
-  padding:10px 25px;
-
-  border-radius:8px;
-
-  border:1px solid rgba(180,200,225,.2);
-
-  background:transparent;
-
-  color:#b7c4d6;
-
-  cursor:pointer;
+    createPuzzle();
 
 }
 
@@ -1990,373 +1999,27 @@ function goToStage4() {
    FINAL
 ========================= */
 
-#finalScreen {
+function showFinal(){
 
-  position:relative;
-
-  overflow:hidden;
-
-  background:
-
-    radial-gradient(
-      circle at center top,
-      #253957 0%,
-      #0b111d 42%,
-      #030509 100%
-    );
-
-}
-
-.final-content {
-
-  position:relative;
-
-  z-index:2;
-
-  width:min(750px,92%);
-
-  text-align:center;
-
-}
-
-.birthday-title {
-
-  font-size:clamp(35px,8vw,75px);
-
-  letter-spacing:8px;
-
-  font-weight:300;
-
-  color:#edf4fc;
-
-  text-shadow:
-
-    0 0 25px rgba(220,235,255,.25);
-
-  animation:
-
-    birthdayAppear 1.5s ease;
-
-}
-
-.birthday-name {
-
-  margin-top:15px;
-
-  font-size:28px;
-
-  color:#a9c4e6;
-
-  animation:
-
-    birthdayAppear 2s ease;
-
-}
-
-.final-message {
-
-  margin:45px auto 0;
-
-  max-width:650px;
-
-  padding:30px;
-
-  line-height:2;
-
-  font-size:16px;
-
-  color:#dce5f0;
-
-  background:
-
-    rgba(5,9,15,.55);
-
-  border:
-
-    1px solid rgba(170,200,230,.12);
-
-  border-radius:18px;
-
-  backdrop-filter:blur(8px);
-
-  animation:
-
-    birthdayAppear 2.5s ease;
-
-}
-
-.lights {
-
-  position:absolute;
-
-  top:-100px;
-
-  left:0;
-
-  width:100%;
-
-  height:20px;
-
-  background:
-
-    radial-gradient(
-      circle,
-      #e8f3ff 0 4px,
-      transparent 5px
-    );
-
-  background-size:45px 45px;
-
-  opacity:.8;
-
-}
-
-
-/* CONFETTI */
-
-.confetti {
-
-  position:absolute;
-
-  inset:-100px;
-
-  pointer-events:none;
-
-  background-image:
-
-    radial-gradient(circle,#dce9f7 2px,transparent 3px),
-    radial-gradient(circle,#8da9ca 2px,transparent 3px),
-    radial-gradient(circle,#ffffff 2px,transparent 3px);
-
-  background-size:
-
-    90px 100px,
-    130px 120px,
-    160px 140px;
-
-  animation:fall 8s linear infinite;
-
-  opacity:.5;
-
-}
-
-
-/* ANIMATIONS */
-
-@keyframes birthdayAppear {
-
-  from {
-
-    opacity:0;
-    transform:translateY(20px);
-
-  }
-
-  to {
-
-    opacity:1;
-    transform:translateY(0);
-
-  }
-
-}
-
-@keyframes fall {
-
-  from {
-    transform:translateY(-100px);
-  }
-
-  to {
-    transform:translateY(100vh);
-  }
-
-}
-
-</style>
-
-
-<script>
-
-/* =========================
-   STAGE 4 FLOW
-========================= */
-
-function goToStage4() {
-
-  document.getElementById("stage3").style.display = "none";
-
-  document.getElementById("stage4").style.display = "flex";
-
-  const bar = document.getElementById("progressBar");
-
-  const number = document.getElementById("progressNumber");
-
-  setTimeout(function() {
-
-    bar.style.width = "87%";
-
-  }, 100);
-
-  setTimeout(function() {
-
-    number.textContent = "100%";
-
-  }, 2500);
-
-  setTimeout(function() {
-
-    document.getElementById("stage4").style.display = "none";
-
-    document.getElementById("errorScreen").style.display = "flex";
-
-  }, 3500);
+    showScreen("final");
 
 }
 
 
 /* =========================
-   FAKE BUTTONS
+   INITIALIZE
 ========================= */
 
-function fakeRetry() {
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
 
-  document.getElementById("errorHint").textContent =
-    "Still missing something... 👀";
-
-}
-
-function fakeIgnore() {
-
-  document.getElementById("errorHint").textContent =
-    "Nice try. You can't ignore this one. 😂";
-
-}
-
-
-/* =========================
-   FIND MISSING
-========================= */
-
-function findMissing() {
-
-  document.getElementById("errorScreen").style.display = "none";
-
-  document.getElementById("puzzleScreen").style.display = "flex";
-
-  createLetters();
-
-}
-
-
-/* =========================
-   LETTER PUZZLE
-========================= */
-
-const correctWord = [
-  "H",
-  "A",
-  "P",
-  "P",
-  "Y",
-  "B",
-  "I",
-  "R",
-  "T",
-  "H",
-  "D",
-  "A",
-  "Y"
-];
-
-let selectedLetters = [];
-
-function createLetters() {
-
-  const container = document.getElementById("letters");
-
-  container.innerHTML = "";
-
-  selectedLetters = [];
-
-  let shuffled = [...correctWord];
-
-  shuffled.sort(() => Math.random() - 0.5);
-
-  shuffled.forEach(function(letter, index) {
-
-    const button = document.createElement("button");
-
-    button.className = "letter";
-
-    button.textContent = letter;
-
-    button.dataset.index = index;
-
-    button.onclick = function() {
-
-      chooseLetter(button, letter);
-
-    };
-
-    container.appendChild(button);
-
-  });
-
-}
-
-
-function chooseLetter(button, letter) {
-
-  selectedLetters.push(letter);
-
-  button.classList.add("used");
-
-  const current = selectedLetters.join("");
-
-  document.getElementById("puzzleHint").textContent = current;
-
-  if (selectedLetters.length === correctWord.length) {
-
-    const answer = selectedLetters.join("");
-
-    if (answer === correctWord.join("")) {
-
-      setTimeout(function() {
-
-        document.getElementById("puzzleScreen").style.display = "none";
-
-        document.getElementById("finalScreen").style.display = "flex";
-
-      }, 700);
-
-    } else {
-
-      document.getElementById("puzzleHint").textContent =
-        "قريب... بس ترتيب الأحرف مو صحيح 👀";
-
-      document.getElementById("resetLetters").style.display =
-        "inline-block";
+        showScreen("intro");
 
     }
-
-  }
-
-}
-
-
-function resetPuzzle() {
-
-  document.getElementById("resetLetters").style.display = "none";
-
-  document.getElementById("puzzleHint").textContent =
-    "اضغط على الأحرف بالترتيب.";
-
-  createLetters();
-
-}
+);
 
 </script>
-</body>
 
+</body>
 </html>
