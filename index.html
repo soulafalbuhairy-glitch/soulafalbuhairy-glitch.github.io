@@ -1,274 +1,314 @@
-<div class="blueprint">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="room room1"></div>
-<div class="room room2"></div>
-<div class="room room3"></div>
-<div class="room room4"></div>
+<title>المشروع 25</title>
 
-<div class="window" style="left:10%;top:7%;"></div>
-<div class="window" style="right:13%;top:7%;"></div>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-<div class="door" style="left:45%;top:34%;"></div>
-<div class="door" style="right:44%;bottom:29%;"></div>
+body {
+    margin: 0;
+    background: #070b14;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
 
-<div class="stairs" style="left:44%;bottom:8%;"></div>
+.screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-<div class="column" style="left:18%;top:18%;"></div>
-<div class="column" style="right:18%;top:18%;"></div>
+.card {
+    width: 90%;
+    max-width: 700px;
+    padding: 50px 30px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(10,15,28,0.9);
+    box-shadow: 0 0 50px rgba(60,130,255,0.12);
+}
 
+h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
 
-<div class="error"
-data-error="1"
-style="
-position:absolute;
-left:39%;
-top:10%;
-width:55px;
-height:55px;
-border-right:2px solid #d6e1ed;
-border-bottom:2px solid #d6e1ed;
-border-radius:0 0 55px 0;">
+p {
+    color: #b9c2d0;
+    line-height: 1.9;
+    font-size: 18px;
+}
+
+button {
+    margin-top: 25px;
+    padding: 14px 35px;
+    border: 1px solid #7fa8ff;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #7fa8ff;
+    color: #050810;
+}
+
+/* المرحلة الأولى */
+
+#stage1 {
+    display: none;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background:
+        linear-gradient(rgba(80,130,200,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,130,200,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.plan {
+    position: relative;
+    width: 80%;
+    height: 70%;
+    max-width: 900px;
+    border: 2px solid rgba(180,210,255,0.5);
+    background: rgba(15,25,40,0.7);
+}
+
+.wall {
+    position: absolute;
+    background: rgba(210,225,255,0.65);
+}
+
+.wall.top {
+    width: 100%;
+    height: 5px;
+    top: 0;
+}
+
+.wall.bottom {
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+}
+
+.wall.left {
+    width: 5px;
+    height: 100%;
+    left: 0;
+}
+
+.wall.right {
+    width: 5px;
+    height: 100%;
+    right: 0;
+}
+
+.error {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border: 2px solid #ff6b6b;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.error:hover {
+    transform: scale(1.2);
+    background: rgba(255,107,107,0.15);
+}
+
+.error.found {
+    border-color: #7fffa0;
+    background: rgba(127,255,160,0.15);
+    box-shadow: 0 0 20px rgba(127,255,160,0.4);
+}
+
+#e1 {
+    top: 20%;
+    left: 20%;
+}
+
+#e2 {
+    top: 35%;
+    left: 65%;
+}
+
+#e3 {
+    top: 65%;
+    left: 30%;
+}
+
+#e4 {
+    top: 50%;
+    left: 80%;
+}
+
+#e5 {
+    top: 75%;
+    left: 65%;
+}
+
+.stage-title {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 22px;
+}
+
+.counter {
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    color: #aebbd0;
+}
+
+.message {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aebbd0;
+    text-align: center;
+}
+
+/* شاشة النجاح */
+
+#successScreen {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- البداية -->
+
+<div id="introScreen" class="screen">
+
+    <div class="card">
+
+        <h1>المشروع 25</h1>
+
+        <p>
+            مهمتك: الوصول إلى نهاية المشروع.<br>
+            أربع مراحل.<br>
+            أربع اختبارات.<br>
+            ولا يوجد زر لتخطي أي مرحلة. 😌
+        </p>
+
+        <button onclick="startProject()">
+            ابدأ المشروع
+        </button>
+
+    </div>
+
 </div>
 
 
-<div class="error window"
-data-error="2"
-style="
-left:43%;
-top:43%;
-width:65px;">
-</div>
+<!-- المرحلة الأولى -->
 
+<div id="stage1">
 
-<div class="error column"
-data-error="3"
-style="
-left:50%;
-top:18%;">
-</div>
+    <div class="stage-title">
+        المرحلة الأولى — العين المعمارية
+    </div>
 
+    <div class="counter">
+        الأخطاء المكتشفة:
+        <span id="count">0</span> / 5
+    </div>
 
-<div class="error stairs"
-data-error="4"
-style="
-right:8%;
-bottom:18%;">
-</div>
+    <div class="plan">
 
+        <div class="wall top"></div>
+        <div class="wall bottom"></div>
+        <div class="wall left"></div>
+        <div class="wall right"></div>
 
-<div class="error"
-data-error="5"
-style="
-position:absolute;
-right:30%;
-bottom:8%;
-width:70px;
-height:25px;
-border:2px solid #d6e1ed;
-background:#101923;">
-</div>
+        <div class="error" id="e1" onclick="findError(this)"></div>
+        <div class="error" id="e2" onclick="findError(this)"></div>
+        <div class="error" id="e3" onclick="findError(this)"></div>
+        <div class="error" id="e4" onclick="findError(this)"></div>
+        <div class="error" id="e5" onclick="findError(this)"></div>
 
-</div>
+    </div>
 
-<div id="message" class="message">
-اضغط على الأشياء التي تعتقد أنها غير منطقية.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- نجاح المرحلة الأولى -->
-
-<section id="successScreen" class="screen hidden">
-
-<div class="success">
-
-<div class="success-icon">✓</div>
-
-<h2>أحسنت.</h2>
-
-<p>
-تم اكتشاف جميع الأخطاء.<br>
-يبدو أنك تستحق الانتقال للمرحلة التالية. 👀
-</p>
-
-<button class="main-btn" onclick="goToStage2()">
-تابع
-</button>
-
-</div>
-
-</section>
-
-
-<!-- المرحلة الثانية -->
-
-<section id="stage2" class="screen hidden">
-
-<div class="stage">
-
-<div class="stage-number">
-المرحلة 02 / 04
-</div>
-
-<h2>شيء ليس في مكانه</h2>
-
-<p class="stage-description">
-المشهد يبدو طبيعيًا...
-<br>
-لكن هناك شيء واحد لا ينتمي إليه.
-</p>
-
-<div class="scene">
-
-<div class="floor"></div>
-
-<div class="table">
-
-<div class="table-leg leg1"></div>
-<div class="table-leg leg2"></div>
-
-</div>
-
-<div class="monitor">
-<div class="monitor-screen"></div>
-<div class="monitor-base"></div>
-</div>
-
-<div class="chair">
-<div class="chair-back"></div>
-<div class="chair-seat"></div>
-</div>
-
-<div class="plant">
-
-<div class="leaf leaf1"></div>
-<div class="leaf leaf2"></div>
-
-<div class="pot"></div>
+    <div class="message">
+        هناك 5 أخطاء مخبأة في المخطط.<br>
+        عيونك المعمارية هي الحل. 👀
+    </div>
 
 </div>
 
 
-<!-- الشيء الغريب -->
+<!-- النجاح -->
 
-<div
-id="strangeObject"
-class="strange"
-onclick="findStrangeObject()">
-</div>
+<div id="successScreen" class="screen">
 
-</div>
+    <div class="card">
 
-<div id="stage2Message" class="message">
-ألقِ نظرة جيدة... 👀
-</div>
+        <h1>أحسنت. 👀</h1>
 
-</div>
+        <p>
+            تم اكتشاف جميع الأخطاء.<br>
+            يبدو أنك تستحق الانتقال للمرحلة التالية.
+        </p>
 
-</section>
+        <button onclick="alert('المرحلة الثانية قادمة... 👀')">
+            تابع
+        </button>
 
-
-<!-- نجاح المرحلة الثانية -->
-
-<section id="success2" class="screen hidden">
-
-<div class="success">
-
-<div class="success-icon">✓</div>
-
-<h2>وجدته. 👀</h2>
-
-<p>
-أحيانًا التفاصيل الصغيرة هي التي تغيّر الصورة كلها.
-</p>
-
-<button class="main-btn" onclick="finishStage2()">
-تابع
-</button>
+    </div>
 
 </div>
-
-</section>
 
 
 <script>
 
 let found = 0;
 
-function startProject(){
+function startProject() {
 
-document.getElementById("introScreen").classList.add("hidden");
-
-document.getElementById("stage1").classList.remove("hidden");
-
-}
-
-
-document.querySelectorAll(".error").forEach(function(error){
-
-error.addEventListener("click",function(){
-
-if(this.classList.contains("found")) return;
-
-this.classList.add("found");
-
-found++;
-
-document.getElementById("count").textContent=found;
-
-document.getElementById("message").textContent=
-"تم اكتشاف خلل ✓";
-
-if(found===5){
-
-setTimeout(function(){
-
-document.getElementById("stage1").classList.add("hidden");
-
-document.getElementById("successScreen").classList.remove("hidden");
-
-},700);
+    document.getElementById("introScreen").style.display = "none";
+    document.getElementById("stage1").style.display = "flex";
 
 }
 
-});
+function findError(element) {
 
-});
+    if (element.classList.contains("found")) {
+        return;
+    }
 
+    element.classList.add("found");
 
-function goToStage2(){
+    found++;
 
-document.getElementById("successScreen").classList.add("hidden");
+    document.getElementById("count").textContent = found;
 
-document.getElementById("stage2").classList.remove("hidden");
+    if (found === 5) {
 
-}
+        setTimeout(function() {
 
+            document.getElementById("stage1").style.display = "none";
+            document.getElementById("successScreen").style.display = "flex";
 
-function findStrangeObject(){
+        }, 700);
 
-document.getElementById("strangeObject").classList.add("found");
-
-document.getElementById("stage2Message").textContent=
-"وجدته. 👀";
-
-setTimeout(function(){
-
-document.getElementById("stage2").classList.add("hidden");
-
-document.getElementById("success2").classList.remove("hidden");
-
-},800);
-
-}
-
-
-function finishStage2(){
-
-alert("المرحلة الثالثة قادمة... 👀");
+    }
 
 }
 
