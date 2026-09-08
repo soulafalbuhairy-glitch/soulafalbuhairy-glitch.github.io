@@ -1,48 +1,195 @@
-<div
-                class="error"
-                data-error="5"
-                style="
-                position:absolute;
-                right:30%;
-                bottom:8%;
-                width:70px;
-                height:25px;
-                border:2px solid #d6e1ed;
-                background:#101923;
-                ">
-            </div>
+<div class="blueprint">
 
-        </div>
+<div class="room room1"></div>
+<div class="room room2"></div>
+<div class="room room3"></div>
+<div class="room room4"></div>
 
-        <div id="message" class="message">
-            اضغط على الأشياء التي تعتقد أنها غير منطقية.
-        </div>
+<div class="window" style="left:10%;top:7%;"></div>
+<div class="window" style="right:13%;top:7%;"></div>
 
-    </div>
+<div class="door" style="left:45%;top:34%;"></div>
+<div class="door" style="right:44%;bottom:29%;"></div>
+
+<div class="stairs" style="left:44%;bottom:8%;"></div>
+
+<div class="column" style="left:18%;top:18%;"></div>
+<div class="column" style="right:18%;top:18%;"></div>
+
+
+<div class="error"
+data-error="1"
+style="
+position:absolute;
+left:39%;
+top:10%;
+width:55px;
+height:55px;
+border-right:2px solid #d6e1ed;
+border-bottom:2px solid #d6e1ed;
+border-radius:0 0 55px 0;">
+</div>
+
+
+<div class="error window"
+data-error="2"
+style="
+left:43%;
+top:43%;
+width:65px;">
+</div>
+
+
+<div class="error column"
+data-error="3"
+style="
+left:50%;
+top:18%;">
+</div>
+
+
+<div class="error stairs"
+data-error="4"
+style="
+right:8%;
+bottom:18%;">
+</div>
+
+
+<div class="error"
+data-error="5"
+style="
+position:absolute;
+right:30%;
+bottom:8%;
+width:70px;
+height:25px;
+border:2px solid #d6e1ed;
+background:#101923;">
+</div>
+
+</div>
+
+<div id="message" class="message">
+اضغط على الأشياء التي تعتقد أنها غير منطقية.
+</div>
+
+</div>
 
 </section>
 
 
-<!-- النجاح -->
+<!-- نجاح المرحلة الأولى -->
 
 <section id="successScreen" class="screen hidden">
 
-    <div class="success">
+<div class="success">
 
-        <div class="success-icon">✓</div>
+<div class="success-icon">✓</div>
 
-        <h2>أحسنت.</h2>
+<h2>أحسنت.</h2>
 
-        <p>
-            تم اكتشاف جميع الأخطاء.<br>
-            يبدو أنك تستحق الانتقال للمرحلة التالية. 👀
-        </p>
+<p>
+تم اكتشاف جميع الأخطاء.<br>
+يبدو أنك تستحق الانتقال للمرحلة التالية. 👀
+</p>
 
-        <button class="main-btn" onclick="nextStage()">
-            تابع
-        </button>
+<button class="main-btn" onclick="goToStage2()">
+تابع
+</button>
 
-    </div>
+</div>
+
+</section>
+
+
+<!-- المرحلة الثانية -->
+
+<section id="stage2" class="screen hidden">
+
+<div class="stage">
+
+<div class="stage-number">
+المرحلة 02 / 04
+</div>
+
+<h2>شيء ليس في مكانه</h2>
+
+<p class="stage-description">
+المشهد يبدو طبيعيًا...
+<br>
+لكن هناك شيء واحد لا ينتمي إليه.
+</p>
+
+<div class="scene">
+
+<div class="floor"></div>
+
+<div class="table">
+
+<div class="table-leg leg1"></div>
+<div class="table-leg leg2"></div>
+
+</div>
+
+<div class="monitor">
+<div class="monitor-screen"></div>
+<div class="monitor-base"></div>
+</div>
+
+<div class="chair">
+<div class="chair-back"></div>
+<div class="chair-seat"></div>
+</div>
+
+<div class="plant">
+
+<div class="leaf leaf1"></div>
+<div class="leaf leaf2"></div>
+
+<div class="pot"></div>
+
+</div>
+
+
+<!-- الشيء الغريب -->
+
+<div
+id="strangeObject"
+class="strange"
+onclick="findStrangeObject()">
+</div>
+
+</div>
+
+<div id="stage2Message" class="message">
+ألقِ نظرة جيدة... 👀
+</div>
+
+</div>
+
+</section>
+
+
+<!-- نجاح المرحلة الثانية -->
+
+<section id="success2" class="screen hidden">
+
+<div class="success">
+
+<div class="success-icon">✓</div>
+
+<h2>وجدته. 👀</h2>
+
+<p>
+أحيانًا التفاصيل الصغيرة هي التي تغيّر الصورة كلها.
+</p>
+
+<button class="main-btn" onclick="finishStage2()">
+تابع
+</button>
+
+</div>
 
 </section>
 
@@ -53,48 +200,75 @@ let found = 0;
 
 function startProject(){
 
-    document.getElementById("introScreen").classList.add("hidden");
+document.getElementById("introScreen").classList.add("hidden");
 
-    document.getElementById("stage1").classList.remove("hidden");
+document.getElementById("stage1").classList.remove("hidden");
 
 }
 
 
 document.querySelectorAll(".error").forEach(function(error){
 
-    error.addEventListener("click", function(){
+error.addEventListener("click",function(){
 
-        if(this.classList.contains("found")) return;
+if(this.classList.contains("found")) return;
 
-        this.classList.add("found");
+this.classList.add("found");
 
-        found++;
+found++;
 
-        document.getElementById("count").textContent = found;
+document.getElementById("count").textContent=found;
 
-        document.getElementById("message").textContent =
-            "تم اكتشاف خلل ✓";
+document.getElementById("message").textContent=
+"تم اكتشاف خلل ✓";
 
-        if(found === 5){
+if(found===5){
 
-            setTimeout(function(){
+setTimeout(function(){
 
-                document.getElementById("stage1").classList.add("hidden");
+document.getElementById("stage1").classList.add("hidden");
 
-                document.getElementById("successScreen").classList.remove("hidden");
+document.getElementById("successScreen").classList.remove("hidden");
 
-            },700);
+},700);
 
-        }
+}
 
-    });
+});
 
 });
 
 
-function nextStage(){
+function goToStage2(){
 
-    alert("المرحلة الثانية قادمة... 👀");
+document.getElementById("successScreen").classList.add("hidden");
+
+document.getElementById("stage2").classList.remove("hidden");
+
+}
+
+
+function findStrangeObject(){
+
+document.getElementById("strangeObject").classList.add("found");
+
+document.getElementById("stage2Message").textContent=
+"وجدته. 👀";
+
+setTimeout(function(){
+
+document.getElementById("stage2").classList.add("hidden");
+
+document.getElementById("success2").classList.remove("hidden");
+
+},800);
+
+}
+
+
+function finishStage2(){
+
+alert("المرحلة الثالثة قادمة... 👀");
 
 }
 
