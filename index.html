@@ -1290,14 +1290,224 @@ function findStrangeObject(element) {
    المرحلة الثالثة
 ========================= */
 
+
+
+
+
+</script>
+<!-- =========================
+     STAGE 3
+========================= -->
+
+<div id="stage3" class="screen" style="display:none;">
+
+  <div class="stage3-card">
+
+    <div class="stage-number">03 / 04</div>
+
+    <h1>اختبار لا يحتاج شهادة هندسة</h1>
+
+    <p class="stage3-question">
+      ما الاستخدام الحقيقي للريلز بين الأصدقاء؟
+    </p>
+
+    <div class="options">
+
+      <button onclick="wrongAnswer()">
+        <span>A</span>
+        تبادل المعرفة
+      </button>
+
+      <button onclick="wrongAnswer()">
+        <span>B</span>
+        متابعة الأخبار
+      </button>
+
+      <button onclick="wrongAnswer()">
+        <span>C</span>
+        إرسال شيء مضحك بدون سياق الساعة 2 بالليل
+      </button>
+
+      <button onclick="correctAnswer()">
+        <span>D</span>
+        جميع ما سبق، لكننا نعرف الحقيقة.
+      </button>
+
+    </div>
+
+    <p id="wrongMessage" class="answer-message"></p>
+
+    <div id="correctBox" style="display:none;">
+      <p class="correct-message">
+        إجابة صحيحة.<br>
+        لا أحد يرسل ريلًا واحدًا فقط. 😂
+      </p>
+
+      <button class="continue-btn" onclick="goToStage4()">
+        تابع
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+#stage3 {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, #172238 0%, #090d16 45%, #05070c 100%);
+  padding: 25px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.stage3-card {
+  width: min(620px, 92%);
+  padding: 45px 35px;
+  background: rgba(12, 18, 30, 0.92);
+  border: 1px solid rgba(130, 170, 220, 0.22);
+  border-radius: 22px;
+  box-shadow:
+    0 0 50px rgba(60, 120, 200, 0.08),
+    inset 0 0 30px rgba(255,255,255,0.015);
+  text-align: center;
+}
+
+.stage-number {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #6e8db8;
+  margin-bottom: 25px;
+}
+
+.stage3-card h1 {
+  color: #f1f5fb;
+  font-size: 27px;
+  margin-bottom: 35px;
+}
+
+.stage3-question {
+  color: #dce5f2;
+  font-size: 19px;
+  margin-bottom: 30px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.options button {
+  width: 100%;
+  padding: 17px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(130, 170, 220, 0.18);
+  background: rgba(255,255,255,0.035);
+  color: #dce5f2;
+  font-size: 15px;
+  text-align: right;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.options button:hover {
+  background: rgba(100, 150, 220, 0.10);
+  border-color: rgba(130, 170, 220, 0.45);
+  transform: translateY(-2px);
+}
+
+.options button span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: rgba(120,160,210,0.12);
+  color: #8eadd4;
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.answer-message {
+  min-height: 25px;
+  margin-top: 20px;
+  color: #9eacc0;
+  font-size: 14px;
+}
+
+.correct-message {
+  color: #dce9f8;
+  line-height: 1.8;
+  margin-top: 25px;
+}
+
+.continue-btn {
+  margin-top: 18px;
+  padding: 13px 35px;
+  border: none;
+  border-radius: 10px;
+  background: #dce9f8;
+  color: #0b1019;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(200,220,255,0.15);
+}
+
+</style>
+
+
+<script>
+
 function goToStage3() {
 
-    alert("المرحلة الثالثة قادمة... 👀");
+  document.getElementById("success2").style.display = "none";
+  document.getElementById("stage3").style.display = "flex";
+
+}
+
+
+function wrongAnswer() {
+
+  const message = document.getElementById("wrongMessage");
+
+  message.textContent =
+    "مممم... إجابة منطقية، بس مو هي الحقيقة. 👀";
+
+}
+
+
+function correctAnswer() {
+
+  document.getElementById("wrongMessage").textContent = "";
+
+  document.querySelector(".options").style.display = "none";
+
+  document.getElementById("correctBox").style.display = "block";
+
+}
+
+
+function goToStage4() {
+
+  alert("المرحلة الرابعة جاهزة تقريبًا... 👀");
 
 }
 
 </script>
-
 
 </body>
 
